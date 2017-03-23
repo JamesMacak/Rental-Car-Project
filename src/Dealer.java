@@ -8,6 +8,14 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A class to use as a static dealer. The dealer can preform opperations for
+ * Rental, Person, and Vehicle.
+ * 
+ * @author Matt Mackenzie & James Macak
+ * @version 1.0
+ *
+ */
 public class Dealer {
 
 	public static final double CAR_DAILY_RENTAL_PRICE = 39.95;
@@ -81,6 +89,23 @@ public class Dealer {
 
 	//////////////////////////////////////////////
 
+	/**
+	 * Create a new car and add it to the array of vehicles.
+	 * 
+	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * given to the car, and the price is given.
+	 * 
+	 * @param make
+	 * @param model
+	 * @param year
+	 * @param color
+	 * @param numberOfCylinders
+	 * @param numberOfDoors
+	 * @param vinNumber
+	 * @param licensePlate
+	 * @param currentMiles
+	 * @param gasCapacity
+	 */
 	public static void createCar(String make, String model, String year, String color, String numberOfCylinders,
 			String numberOfDoors, String vinNumber, String licensePlate, double currentMiles, double gasCapacity) {
 		Car car = new Car(make, model, year, color, numberOfCylinders, numberOfDoors, vinNumber, licensePlate,
@@ -89,6 +114,23 @@ public class Dealer {
 		vehicles.add(car);
 	}
 
+	/**
+	 * Create a new van and add it to the array of vehicles.
+	 * 
+	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * given to the van, and the price is given.
+	 * 
+	 * @param make
+	 * @param model
+	 * @param year
+	 * @param color
+	 * @param numberOfCylinders
+	 * @param numberOfDoors
+	 * @param vinNumber
+	 * @param licensePlate
+	 * @param currentMiles
+	 * @param gasCapacity
+	 */
 	public static void createVan(String make, String model, String year, String color, String numberOfCylinders,
 			String numberOfDoors, String vinNumber, String licensePlate, double currentMiles, double gasCapacity) {
 		Van van = new Van(make, model, year, color, numberOfCylinders, numberOfDoors, vinNumber, licensePlate,
@@ -97,6 +139,23 @@ public class Dealer {
 		vehicles.add(van);
 	}
 
+	/**
+	 * Create a new truck and add it to the array of vehicles.
+	 * 
+	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * given to the van, and the price is given.
+	 * 
+	 * @param make
+	 * @param model
+	 * @param year
+	 * @param color
+	 * @param numberOfCylinders
+	 * @param numberOfDoors
+	 * @param vinNumber
+	 * @param licensePlate
+	 * @param currentMiles
+	 * @param gasCapacity
+	 */
 	public static void createTruck(String make, String model, String year, String color, String numberOfCylinders,
 			String numberOfDoors, String vinNumber, String licensePlate, double currentMiles, double gasCapacity) {
 		Truck truck = new Truck(make, model, year, color, numberOfCylinders, numberOfDoors, vinNumber, licensePlate,
@@ -107,6 +166,19 @@ public class Dealer {
 
 	// ******************************************* //
 
+	/**
+	 * Create a new basic customer.
+	 * 
+	 * See parameter description in customer class. Age is calculated based on
+	 * the date of birth, and the customer is given a random ID.
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param dateOfBirth
+	 * @param socialSecurityNumber
+	 * @param gender
+	 * @param address
+	 */
 	public static void createBasicCustomer(String firstName, String lastName, String dateOfBirth,
 			String socialSecurityNumber, String gender, String address) {
 		Basic customer = new Basic(firstName, lastName, dateOfBirth, socialSecurityNumber, calculateAge(dateOfBirth),
@@ -118,15 +190,28 @@ public class Dealer {
 	}
 	/////////////////////////////////////////////
 
+	/**
+	 * Add a sale to the total sales.
+	 * 
+	 * @param sale
+	 *            The amount to add.
+	 */
 	public static void addSale(double sale) {
 		sales += sale;
 	}
 
+	/**
+	 * Calculate a sale.
+	 * 
+	 * @param contract
+	 *            The finished contract to calculate the days since rented.
+	 * @return A string of the price formated "%.2f"
+	 */
 	public static String calculateSale(Rental contract) {
 
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-		String inputString1 = contract.getDate();
-		String inputString2 = getDate();
+		String inputString1 = contract.getStartDate();
+		String inputString2 = contract.getEndDate();
 
 		int days = 0;
 		try {
@@ -144,7 +229,13 @@ public class Dealer {
 
 	}
 
-	public static void changeToPrivledgedCustomer(Basic customer) {
+	/**
+	 * Change a basic customer to a privileged customer.
+	 * 
+	 * @param customer
+	 *            The basic customer to change.
+	 */
+	public static void changeToPriviledgedCustomer(Basic customer) {
 		String[] data = customer.getData();
 		Privileged newprivileged = new Privileged(data[0], data[1], data[2], data[3], data[4], data[5], data[6],
 				data[7]);
@@ -156,6 +247,12 @@ public class Dealer {
 		privilegedCustomers.add(newprivileged);
 	}
 
+	/**
+	 * Change a privileged customer to a basic customer.
+	 * 
+	 * @param customer
+	 *            The privileged customer to change.
+	 */
 	public static void changeToBasicCustomer(Privileged customer) {
 		String[] data = customer.getData();
 		Basic newBasic = new Basic(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
@@ -225,12 +322,24 @@ public class Dealer {
 		return (notNew) ? generateCustomerIDNumber() : newNumber;
 	}
 
+	/**
+	 * Get today's date
+	 * 
+	 * @return Today's date in "MM/dd/yyyy"
+	 */
 	public static String getDate() {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = new Date();
 		return format.format(date);
 	}
 
+	/**
+	 * Calculate someones age from their dob.
+	 * 
+	 * @param dob
+	 *            Date of birth in "MM/dd/yyyy"
+	 * @return The amount of years from that date to today.
+	 */
 	private static String calculateAge(String dob) {
 
 		int year = Integer.parseInt(dob.substring(6));

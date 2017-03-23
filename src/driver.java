@@ -2,12 +2,10 @@ public class driver {
 
 	public static void main(String[] args) {
 
-<<<<<<< Updated upstream
 		System.out.println("OHMIGOD ITS WORKNG!!!");
-=======
+
 		/** TEST COMMENT */
->>>>>>> Stashed changes
-		
+
 		// public Vehicle(String make, String model, String year, String color,
 		// String numberOfCylinders, String numberOfDoors,
 		// String vinNumber, String licensePlate, String companyID, double
@@ -20,7 +18,7 @@ public class driver {
 		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street");
 		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive");
 
-		Dealer.changeToPrivledgedCustomer(Dealer.getBasicCustomers().get(0));
+		Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomers().get(0));
 
 		Customer matt = Dealer.getPrivilegedCustomers().get(0);
 		Vehicle car = Dealer.getVehicles().get(0);

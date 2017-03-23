@@ -306,6 +306,12 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 		currentMiles += currentTrip;
 	}
 
+	/**
+	 * Add a rental contract to the vehicle.
+	 * 
+	 * @param contract
+	 *            The contract to add.
+	 */
 	public void addRentalContract(Rental contract) {
 		rentalContracts.add(contract);
 	}

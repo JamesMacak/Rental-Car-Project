@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-// I dont know what im doing!! Is this doing something
 /**
  * Customer class includes a customer ID and extends the generic Person class.
  * 
@@ -156,7 +155,8 @@ public class Customer extends Person {
 
 	/**
 	 * Return the vehicle after using it, thus ending the contract. This will
-	 * return the contract that you are turning in.
+	 * return the contract that you are turning in. The contract's end date is
+	 * set to the current date.
 	 * 
 	 * @param damaged
 	 *            If the vehicle bacame damaged during use.
@@ -178,6 +178,7 @@ public class Customer extends Person {
 			currentContract.setDamageDone(damaged);
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
+			currentContract.setEndDate(Dealer.getDate());
 			currentContract.setContractExpired(true);
 
 			return currentContract;
