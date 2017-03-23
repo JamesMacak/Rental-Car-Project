@@ -37,7 +37,7 @@ public class driver {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println(c.isPrivileged());
+		//System.out.println(c.isPrivileged());
 		
 		// Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(c));
 
