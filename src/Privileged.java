@@ -23,7 +23,7 @@ public class Privileged extends Customer {
 	 * @param gender
 	 *            The gender of the person.
 	 * @param address
-	 *            The street address of the person.
+	 *            The street adress of the person.
 	 * @param customerID
 	 *            The customer ID number of the person.
 	 */
@@ -49,7 +49,7 @@ public class Privileged extends Customer {
 	/**
 	 * Return the customerID, lastName, firstName as a string
 	 * 
-	 * @return customerID : lastName, firstName
+	 * @return customerID : lastname, firstName
 	 */
 	public String toString() {
 		return super.toString();
