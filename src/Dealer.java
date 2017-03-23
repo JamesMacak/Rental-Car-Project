@@ -242,7 +242,7 @@ public class Dealer {
 	 * @param customer
 	 *            The basic customer to change.
 	 */
-	public static void changeToPriviledgedCustomer(Basic customer) {
+	public static Privileged changeToPriviledgedCustomer(Basic customer) {
 		String[] data = customer.getData();
 		Privileged newprivileged = new Privileged(data[0], data[1], data[2], data[3], data[4], data[5], data[6],
 				data[7]);
@@ -252,6 +252,10 @@ public class Dealer {
 
 		basicCustomers.remove(customer);
 		privilegedCustomers.add(newprivileged);
+
+		newprivileged.setPrivileged(true);
+
+		return newprivileged;
 	}
 
 	/**
@@ -260,7 +264,7 @@ public class Dealer {
 	 * @param customer
 	 *            The privileged customer to change.
 	 */
-	public static void changeToBasicCustomer(Privileged customer) {
+	public static Basic changeToBasicCustomer(Privileged customer) {
 		String[] data = customer.getData();
 		Basic newBasic = new Basic(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
 
@@ -269,6 +273,11 @@ public class Dealer {
 
 		privilegedCustomers.remove(customer);
 		basicCustomers.add(newBasic);
+
+		newBasic.setPrivileged(false);
+
+		return newBasic;
+
 	}
 
 	/**
@@ -387,11 +396,9 @@ public class Dealer {
 		for (Customer customer : customers) {
 			if (customerID.equals(customer.getCustomerID())) {
 				return customer;
-			} else {
-				throw new Exception("No Customer Exists.");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists.");
 	}
 
 	/**
@@ -407,11 +414,9 @@ public class Dealer {
 		for (Privileged privileged : privilegedCustomers) {
 			if (customer.equals(privileged)) {
 				return privileged;
-			} else {
-				throw new Exception("No Customer Exists.");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists.");
 	}
 
 	/**
@@ -427,10 +432,8 @@ public class Dealer {
 		for (Basic basic : basicCustomers) {
 			if (customer.equals(basic)) {
 				return basic;
-			} else {
-				throw new Exception("No Customer Exists,");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists,");
 	}
 }

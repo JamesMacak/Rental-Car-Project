@@ -62,6 +62,6 @@ public class Basic extends Customer {
 	 * @return true or false
 	 */
 	public boolean equals(Customer otherCustomer) {
-		return this.equals(otherCustomer);
+		return super.equals(otherCustomer);
 	}
 }

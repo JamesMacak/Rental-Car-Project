@@ -10,38 +10,62 @@ public class driver {
 		createCompanyVans();
 		createCompanyTrucks();
 
-		for (int i = 0; i < Dealer.getVehicles().size(); i++) {
-			System.out.println(Dealer.getVehicles().get(i));
-		}
-
-		System.out.println("");
+		// for (int i = 0; i < Dealer.getVehicles().size(); i++) {
+		// System.out.println(Dealer.getVehicles().get(i));
+		// }
 
 		createSamplePeople();
 		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street");
 		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive");
 
-		for (int i = 0; i < Dealer.getCustomers().size(); i++) {
-			System.out.println(Dealer.getCustomers().get(i));
-		}
+		// for (int i = 0; i < Dealer.getCustomers().size(); i++) {
+		// System.out.println(Dealer.getCustomers().get(i));
+		// }
 
-		Scanner key = new Scanner(System.in);
-		String id = key.nextLine();
-		Customer c = null;
+		Customer matt = Dealer.getCustomers().get(20);
+		Vehicle car = Dealer.getVehicles().get(0);
+		System.out.println(matt);
 
-		System.out.println("\n" + Dealer.getCustomers().get(2).getCustomerID());
-		System.out.println(id);
-		try {
-			 c = Dealer.getCustomer(id);
-			 System.out.println(c.isPrivileged());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-		System.out.println(c.isPrivileged());
+		Rental r1 = new Rental(car, matt, "01/16/2017", Rental.getRentalContractNumber(), Dealer.CAR_DAILY_RENTAL_PRICE,
+				car.getCurrentMiles(), car.getGasCapacity());
+		Rental r2 = new Rental(car, matt, "02/14/2017", Rental.getRentalContractNumber(), Dealer.CAR_DAILY_RENTAL_PRICE,
+				car.getCurrentMiles(), car.getGasCapacity());
+		Rental r3 = new Rental(car, matt, "02/16/2017", Rental.getRentalContractNumber(), Dealer.CAR_DAILY_RENTAL_PRICE,
+				car.getCurrentMiles(), car.getGasCapacity());
+		Rental r4 = new Rental(car, matt, "03/16/2017", Rental.getRentalContractNumber(), Dealer.CAR_DAILY_RENTAL_PRICE,
+				car.getCurrentMiles(), car.getGasCapacity());
+		Rental r5 = new Rental(car, matt, "03/20/2017", Rental.getRentalContractNumber(), Dealer.CAR_DAILY_RENTAL_PRICE,
+				car.getCurrentMiles(), car.getGasCapacity());
 		
-		// Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(c));
+		System.out.println(matt.isPrivileged());
+		try {
+			matt.addRentalContract(r1);
+			matt.returnContract(false, 12454.3 + 10, 12);
+			
+			matt.addRentalContract(r2);
+			matt.returnContract(false, 12454.3 + 20, 12);
+			
+			matt.addRentalContract(r3);
+			matt.returnContract(false, 12454.3 + 30, 12);
+			
+			matt.addRentalContract(r4);
+			matt.returnContract(false, 12454.3 + 40, 12);
+			
+			matt.addRentalContract(r5);
+			matt.returnContract(false, 12454.3 + 50, 12);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(matt.getRentalContracts().size());
+		try {
+			System.out.println(Dealer.getPrivilegedCustomer(matt).isPrivileged());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		key.close();
 	}
 
 	/////////////////////////////////////////////////////////
