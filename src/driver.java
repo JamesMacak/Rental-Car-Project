@@ -25,29 +25,32 @@ public class driver {
 
 		Rental rental1 = new Rental(car, matt, "03/12/2017", Rental.getRentalContractNumber(),
 				Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
-		Rental rental2 = new Rental(car, matt, "03/18/2017", Rental.getRentalContractNumber(),
+		Rental rental2 = new Rental(car, matt, "03/12/2017", Rental.getRentalContractNumber(),
 				Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
 
 		System.out.println(rental2.getContractNumber());
 		
+		System.out.println(car.isAvailable());
 		
 		try {
 			matt.addRentalContract(rental1);
+			//matt.addRentalContract(rental2);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		car.addRentalContract(rental1);
 
+		System.out.println(car.isAvailable());
 		
 		String s = "$ ";
 		try {
-			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(matt.returnContract(false, 12, 12))));
+			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(matt.returnContract(false, 12490, 12))));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			
 		}
 		
-		
+		System.out.println(car.isAvailable());
 	
 		System.out.println(s + Dealer.getSales());
 	}

@@ -274,4 +274,8 @@ public class Rental {
 			gasUpCharge = true;
 		}
 	}
+	
+	public double getMilesTraveled() {
+		return endMiles - startMiles;
+	}
 }

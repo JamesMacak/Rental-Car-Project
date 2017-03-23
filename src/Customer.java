@@ -143,11 +143,17 @@ public class Customer extends Person {
 	 * @throws Exception
 	 *             "Contract Expired" will throw if you try to add an already
 	 *             expired contract.
+	 * @throws Exception
+	 *             "Active Contract Already Exists." if there is already an
+	 *             active contract for the customer.
 	 */
 	public void addRentalContract(Rental contract) throws Exception {
 		if (contract.isContractExpired()) {
 			throw new Exception("Contract Expired.");
+		} else if (getActiveRentalContract() != null) {
+			throw new Exception("Active Contract Already Exists.");
 		} else {
+
 			rentalContracts.add(contract);
 		}
 
@@ -179,7 +185,13 @@ public class Customer extends Person {
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
 			currentContract.setEndDate(Dealer.getDate());
+
+			currentContract.checkMiles();
+			currentContract.checkGas();
+
 			currentContract.setContractExpired(true);
+			
+			Dealer.returnVehicle(currentContract);
 
 			return currentContract;
 		}

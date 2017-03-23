@@ -11,6 +11,8 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 	private String make, model, year, color, numberOfCylinders, numberOfDoors, vinNumber, licensePlate, companyID;
 	private double dailyRentalPrice, currentMiles, gasCapacity;
 
+	private boolean available;
+
 	private ArrayList<Rental> rentalContracts = new ArrayList<Rental>();
 
 	/**
@@ -50,6 +52,8 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 		this.dailyRentalPrice = dailyRentalPrice;
 		this.currentMiles = currentMiles;
 		this.gasCapacity = gasCapacity;
+
+		this.available = true;
 	}
 
 	/**
@@ -253,7 +257,6 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 				return contract;
 			}
 		}
-
 		return null;
 	}
 
@@ -314,5 +317,27 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 	 */
 	public void addRentalContract(Rental contract) {
 		rentalContracts.add(contract);
+		this.setAvailable();
+	}
+
+	/**
+	 * Check availability of vehicle.
+	 * 
+	 * @return boolean.
+	 */
+	public boolean isAvailable() {
+		return available;
+	}
+
+	/**
+	 * Set the availability of the car. If an active contract exists, then the
+	 * car is not avaiable.
+	 */
+	public void setAvailable() {
+		if (getActiveRentalContract() != null) {
+			available = false;
+		} else {
+			available = true;
+		}
 	}
 }

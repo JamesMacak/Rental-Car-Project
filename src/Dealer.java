@@ -201,7 +201,8 @@ public class Dealer {
 	}
 
 	/**
-	 * Calculate a sale.
+	 * Calculate a sale. $200 fine for damage. $50 fine for more than 100 miles.
+	 * $20 fine for not filling up the tank.
 	 * 
 	 * @param contract
 	 *            The finished contract to calculate the days since rented.
@@ -224,6 +225,13 @@ public class Dealer {
 		}
 
 		double cost = days * contract.getDailyPrice();
+
+		if (contract.isDamageDone())
+			cost += 200.00;
+		if (contract.isMilesUpCharge())
+			cost += 50.00;
+		if (contract.isGasUpCharge())
+			cost += 20.00;
 
 		return String.format("%.2f", cost);
 
@@ -352,6 +360,19 @@ public class Dealer {
 
 		return Integer.toString(p.getYears());
 
+	}
+
+	/**
+	 * Method to return the car itself. This will add the miles traveled to the
+	 * car, and set it to avaible.
+	 * 
+	 * @param contract
+	 */
+	public static void returnVehicle(Rental contract) {
+		Vehicle v = contract.getVehicle();
+
+		v.addMiles(contract.getMilesTraveled());
+		v.setAvailable();
 	}
 
 }
