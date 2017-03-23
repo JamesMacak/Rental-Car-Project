@@ -40,7 +40,11 @@ public class driver {
 		}
 		car.addRentalContract(rental1);
 
+<<<<<<< HEAD
 		System.out.println(car.isAvailable());
+=======
+		//System.out.println(c.isPrivileged());
+>>>>>>> origin/master
 		
 		String s = "$ ";
 		try {

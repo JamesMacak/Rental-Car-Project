@@ -184,14 +184,23 @@ public class Customer extends Person {
 			currentContract.setDamageDone(damaged);
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
+<<<<<<< HEAD
 			currentContract.setEndDate(Dealer.getDate());
 
 			currentContract.checkMiles();
 			currentContract.checkGas();
+=======
+			currentContract.setContractExpired(true);
+
+>>>>>>> origin/master
 
 			currentContract.setContractExpired(true);
 			
 			Dealer.returnVehicle(currentContract);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
 			return currentContract;
 		}
