@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-// I dont know what im doing!!
+// I dont know what im doing!! Is this doing something
 /**
  * Customer class includes a customer ID and extends the generic Person class.
  * 
