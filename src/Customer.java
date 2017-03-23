@@ -201,7 +201,10 @@ public class Customer extends Person {
 			currentContract.setEndGasLevel(endGasLevel);
 			currentContract.setContractExpired(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
 
 			Dealer.returnVehicle(currentContract);
 >>>>>>> origin/master
