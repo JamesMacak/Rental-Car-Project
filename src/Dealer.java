@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A class to use as a static dealer. The dealer can preform opperations for
+ * A class to use as a static dealer. The dealer can perform operations for
  * Rental, Person, and Vehicle.
  * 
  * @author Matt Mackenzie & James Macak
@@ -39,7 +39,6 @@ public class Dealer {
 	 */
 	public Dealer() {
 		sales = 0.00;
-
 	}
 
 	/**
@@ -92,7 +91,7 @@ public class Dealer {
 	/**
 	 * Create a new car and add it to the array of vehicles.
 	 * 
-	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * **See car class for parameter descriptions. A company ID is generated and
 	 * given to the car, and the price is given.
 	 * 
 	 * @param make
@@ -117,7 +116,7 @@ public class Dealer {
 	/**
 	 * Create a new van and add it to the array of vehicles.
 	 * 
-	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * **See car class for parameter descriptions. A company ID is generated and
 	 * given to the van, and the price is given.
 	 * 
 	 * @param make
@@ -142,7 +141,7 @@ public class Dealer {
 	/**
 	 * Create a new truck and add it to the array of vehicles.
 	 * 
-	 * **See car class for parameter desctiptions. A company ID is generated and
+	 * **See car class for parameter descriptions. A company ID is generated and
 	 * given to the van, and the price is given.
 	 * 
 	 * @param make
@@ -274,8 +273,8 @@ public class Dealer {
 
 	/**
 	 * This method generates a random raw company ID number. This also adds each
-	 * number to a list of all account numbers. This method will check ecah
-	 * genrated number against the list, and if there is already an account
+	 * number to a list of all account numbers. This method will check each
+	 * generated number against the list, and if there is already an account
 	 * number that exists that is the same as the generated one, the method will
 	 * generate a new one and check it all the same.
 	 * 
@@ -303,19 +302,19 @@ public class Dealer {
 
 	/**
 	 * This method generates a random customer ID number. This also adds each
-	 * number to a list of all account numbers. This method will check ecah
-	 * genrated number against the list, and if there is already an account
+	 * number to a list of all account numbers. This method will check each
+	 * generated number against the list, and if there is already an account
 	 * number that exists that is the same as the generated one, the method will
 	 * generate a new one and check it all the same.
 	 * 
-	 * @return The newly generated customer ID number. (xxxxxx)
+	 * @return The newly generated customer ID number. (xxxxxxx)
 	 */
 	private static String generateCustomerIDNumber() {
 
 		boolean notNew = false;
 
 		Random rand = new Random();
-		int xxxxxx = 100000 + rand.nextInt(900000);
+		int xxxxxx = 1000000 + rand.nextInt(9000000);
 		String newNumber = Integer.toString(xxxxxx);
 
 		for (int i = 0; i < allCustomerIDNumbers.size(); i++) {
@@ -342,10 +341,10 @@ public class Dealer {
 	}
 
 	/**
-	 * Calculate someones age from their dob.
+	 * Calculate someone's age from their date of birth.
 	 * 
 	 * @param dob
-	 *            Date of birth in "MM/dd/yyyy"
+	 *            Date of birth in "mm/dd/yyyy"
 	 * @return The amount of years from that date to today.
 	 */
 	private static String calculateAge(String dob) {
@@ -364,7 +363,7 @@ public class Dealer {
 
 	/**
 	 * Method to return the car itself. This will add the miles traveled to the
-	 * car, and set it to avaible.
+	 * car, and set it to available.
 	 * 
 	 * @param contract
 	 */
@@ -375,4 +374,63 @@ public class Dealer {
 		v.setAvailable();
 	}
 
+	/**
+	 * Get a generic customer from their ID.
+	 * 
+	 * @param customerID
+	 *            The ID of the customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Customer getCustomer(String customerID) throws Exception {
+		for (Customer customer : customers) {
+			if (customerID.equals(customer.getCustomerID())) {
+				return customer;
+			} else {
+				throw new Exception("No Customer Exists.");
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get a privileged customer from a generic customer.
+	 * 
+	 * @param customer
+	 *            The privileged customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Privileged getPrivilegedCustomer(Customer customer) throws Exception {
+		for (Privileged privileged : privilegedCustomers) {
+			if (customer.equals(privileged)) {
+				return privileged;
+			} else {
+				throw new Exception("No Customer Exists.");
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get a basic customer from a generic customer.
+	 * 
+	 * @param customer
+	 *            The basic customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Basic getBasicCustomer(Customer customer) throws Exception {
+		for (Basic basic : basicCustomers) {
+			if (customer.equals(basic)) {
+				return basic;
+			} else {
+				throw new Exception("No Customer Exists,");
+			}
+		}
+		return null;
+	}
 }
