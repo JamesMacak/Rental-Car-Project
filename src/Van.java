@@ -3,7 +3,7 @@ public class Van extends Vehicle {
 
 	/**
 	 * Parameterized constructor for a van. Must include the vinNumber,
-	 * licensePlate, raw company ID, and retail price because no setters exist.
+	 * licensePlate, raw company ID, and retail price becasue no setters exist.
 	 * The specific Company ID for the van. The van's ID modifier = 01
 	 * 
 	 * @param make
@@ -35,7 +35,7 @@ public class Van extends Vehicle {
 
 	/**
 	 * Null constructor for a vehicle. However, must include the vinNumber,
-	 * licensePlate, raw company ID, and rental price because no setters exist.
+	 * licensePlate, raw company ID, and rental price becasue no setters exist.
 	 * 
 	 * @param vinNumber
 	 *            The VIN number of the vehicle.
