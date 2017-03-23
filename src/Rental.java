@@ -26,7 +26,7 @@ public class Rental {
 	 * @param startDate
 	 *            The date the contract was made.
 	 * @param contractNumber
-	 *            The ontract number "XXXXXX"
+	 *            The contract number "XXXXXX"
 	 * @param dailyPrice
 	 *            The daily price of rental.
 	 * @param startMiles
@@ -71,16 +71,16 @@ public class Rental {
 	}
 
 	/**
-	 * See if the customer recieves mile up charge.
+	 * See if the customer receives mile up charge.
 	 * 
-	 * @return boolen.
+	 * @return boolean.
 	 */
 	public boolean isMilesUpCharge() {
 		return milesUpCharge;
 	}
 
 	/**
-	 * See if the customer recieves gas up charge.
+	 * See if the customer receives gas up charge.
 	 * 
 	 * @return boolean.
 	 */

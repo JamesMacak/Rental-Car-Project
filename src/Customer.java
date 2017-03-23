@@ -11,6 +11,8 @@ public class Customer extends Person {
 	private String customerID;
 	private ArrayList<Rental> rentalContracts = new ArrayList<Rental>();
 
+	private boolean privileged, waiting;
+
 	/**
 	 * Parameterized constructor accepts all attributes of a customer.
 	 * 
@@ -35,6 +37,8 @@ public class Customer extends Person {
 			String gender, String address, String customerID) {
 		super(firstName, lastName, dateOfBirth, socialSecurityNumber, age, gender, address);
 		this.customerID = customerID;
+		this.privileged = false;
+		this.waiting = false;
 	}
 
 	/**
@@ -87,6 +91,24 @@ public class Customer extends Person {
 	 */
 	public ArrayList<Rental> getRentalContracts() {
 		return rentalContracts;
+	}
+
+	public boolean isPrivileged() {
+		return privileged;
+	}
+
+	public void setPrivileged(boolean privileged) {
+		if (rentalContracts.size() >= 5) {
+			privileged = true;
+		}
+	}
+
+	public boolean isWaiting() {
+		return waiting;
+	}
+
+	public void setWaiting(boolean waiting) {
+		this.waiting = waiting;
 	}
 
 	/**
@@ -143,17 +165,11 @@ public class Customer extends Person {
 	 * @throws Exception
 	 *             "Contract Expired" will throw if you try to add an already
 	 *             expired contract.
-	 * @throws Exception
-	 *             "Active Contract Already Exists." if there is already an
-	 *             active contract for the customer.
 	 */
 	public void addRentalContract(Rental contract) throws Exception {
 		if (contract.isContractExpired()) {
 			throw new Exception("Contract Expired.");
-		} else if (getActiveRentalContract() != null) {
-			throw new Exception("Active Contract Already Exists.");
 		} else {
-
 			rentalContracts.add(contract);
 		}
 
@@ -161,8 +177,7 @@ public class Customer extends Person {
 
 	/**
 	 * Return the vehicle after using it, thus ending the contract. This will
-	 * return the contract that you are turning in. The contract's end date is
-	 * set to the current date.
+	 * return the contract that you are turning in.
 	 * 
 	 * @param damaged
 	 *            If the vehicle bacame damaged during use.
@@ -184,14 +199,12 @@ public class Customer extends Person {
 			currentContract.setDamageDone(damaged);
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
-			currentContract.setEndDate(Dealer.getDate());
-
-			currentContract.checkMiles();
-			currentContract.checkGas();
-
 			currentContract.setContractExpired(true);
-			
+<<<<<<< HEAD
+=======
+
 			Dealer.returnVehicle(currentContract);
+>>>>>>> origin/master
 
 			return currentContract;
 		}
