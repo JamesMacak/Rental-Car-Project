@@ -11,6 +11,8 @@ public class Customer extends Person {
 	private String customerID;
 	private ArrayList<Rental> rentalContracts = new ArrayList<Rental>();
 
+	private boolean privileged, waiting;
+
 	/**
 	 * Parameterized constructor accepts all attributes of a customer.
 	 * 
@@ -35,6 +37,8 @@ public class Customer extends Person {
 			String gender, String address, String customerID) {
 		super(firstName, lastName, dateOfBirth, socialSecurityNumber, age, gender, address);
 		this.customerID = customerID;
+		this.privileged = false;
+		this.waiting = false;
 	}
 
 	/**
@@ -87,6 +91,24 @@ public class Customer extends Person {
 	 */
 	public ArrayList<Rental> getRentalContracts() {
 		return rentalContracts;
+	}
+
+	public boolean isPrivileged() {
+		return privileged;
+	}
+
+	public void setPrivileged(boolean privileged) {
+		if (rentalContracts.size() >= 5) {
+			privileged = true;
+		}
+	}
+
+	public boolean isWaiting() {
+		return waiting;
+	}
+
+	public void setWaiting(boolean waiting) {
+		this.waiting = waiting;
 	}
 
 	/**
@@ -190,7 +212,7 @@ public class Customer extends Person {
 			currentContract.checkGas();
 
 			currentContract.setContractExpired(true);
-			
+
 			Dealer.returnVehicle(currentContract);
 
 			return currentContract;

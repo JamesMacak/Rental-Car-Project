@@ -308,14 +308,14 @@ public class Dealer {
 	 * number that exists that is the same as the generated one, the method will
 	 * generate a new one and check it all the same.
 	 * 
-	 * @return The newly generated customer ID number. (xxxxxx)
+	 * @return The newly generated customer ID number. (xxxxxxx)
 	 */
 	private static String generateCustomerIDNumber() {
 
 		boolean notNew = false;
 
 		Random rand = new Random();
-		int xxxxxx = 100000 + rand.nextInt(900000);
+		int xxxxxx = 1000000 + rand.nextInt(9000000);
 		String newNumber = Integer.toString(xxxxxx);
 
 		for (int i = 0; i < allCustomerIDNumbers.size(); i++) {
@@ -375,4 +375,63 @@ public class Dealer {
 		v.setAvailable();
 	}
 
+	/**
+	 * Get a generic customer from their ID.
+	 * 
+	 * @param customerID
+	 *            The ID of the customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Customer getCustomer(String customerID) throws Exception {
+		for (Customer customer : customers) {
+			if (customerID.equals(customer.getCustomerID())) {
+				return customer;
+			} else {
+				throw new Exception("No Customer Exists.");
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get a privileged customer from a generic customer.
+	 * 
+	 * @param customer
+	 *            The privileged customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Privileged getPrivilegedCustomer(Customer customer) throws Exception {
+		for (Privileged privileged : privilegedCustomers) {
+			if (customer.equals(privileged)) {
+				return privileged;
+			} else {
+				throw new Exception("No Customer Exists.");
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get a basic customer from a generic customer.
+	 * 
+	 * @param customer
+	 *            The basic customer you are looking for.
+	 * @return The found customer.
+	 * @throws Exception
+	 *             "No Customer Exists." If no such customer exists.
+	 */
+	public static Basic getBasicCustomer(Customer customer) throws Exception {
+		for (Basic basic : basicCustomers) {
+			if (customer.equals(basic)) {
+				return basic;
+			} else {
+				throw new Exception("No Customer Exists,");
+			}
+		}
+		return null;
+	}
 }
