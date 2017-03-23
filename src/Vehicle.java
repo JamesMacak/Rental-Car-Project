@@ -17,7 +17,7 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 
 	/**
 	 * Parameterized constructor for a vehicle. Must include the vinNumber and
-	 * licensePlate becasue no setters exist.
+	 * licensePlate because no setters exist.
 	 * 
 	 * @param make
 	 *            The make of the vehicle.
@@ -58,7 +58,7 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 
 	/**
 	 * Null constructor for a vehicle. However, must include the vinNumber and
-	 * licensePlate and rental price becasue no setters exist.
+	 * licensePlate and rental price because no setters exist.
 	 * 
 	 * @param vinNumber
 	 *            The VIN number of the vehicle.
@@ -331,7 +331,7 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 
 	/**
 	 * Set the availability of the car. If an active contract exists, then the
-	 * car is not avaiable.
+	 * car is not available.
 	 */
 	public void setAvailable() {
 		if (getActiveRentalContract() != null) {
