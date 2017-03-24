@@ -48,7 +48,7 @@ public class driver {
 	/////////////////////////////////////////////////////////
 
 	public static void createSamplePeople() {
-		String fileName = "/Users/Mattmacks/Desktop/customers.txt";
+		String fileName = "res/customers.txt";
 		Scanner inputStream = null;
 
 		try {
@@ -66,7 +66,7 @@ public class driver {
 	}
 
 	public static void createCompanyCars() {
-		String fileName = "/Users/Mattmacks/Desktop/cars.txt";
+		String fileName = "res/cars.txt";
 		Scanner inputStream = null;
 
 		try {
@@ -85,7 +85,7 @@ public class driver {
 	}
 
 	public static void createCompanyVans() {
-		String fileName = "/Users/Mattmacks/Desktop/vans.txt";
+		String fileName = "res/vans.txt";
 		Scanner inputStream = null;
 
 		try {
@@ -104,7 +104,7 @@ public class driver {
 	}
 
 	public static void createCompanyTrucks() {
-		String fileName = "/Users/Mattmacks/Desktop/trucks.txt";
+		String fileName = "res/trucks.txt";
 		Scanner inputStream = null;
 
 		try {
