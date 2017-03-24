@@ -1,32 +1,27 @@
-/**
- * A truck of type Vehicle. Class was created so we have a truck data type. Does not add any new instance variables.
- * 
- * @author Matt Mackenzie & James Macak
- * @version 1.0
- */
+
 public class Truck extends Vehicle {
 
 	/**
-	 * Parameterized constructor for a truck. Must include the vinNumber,
+	 * Parameterized constructor for a Car. Must include the vinNumber,
 	 * licensePlate, raw company ID, and retail price because no setters exist.
-	 * The specific Company ID for the truck. The truck's ID modifier = 03
+	 * The specific Company ID for the car. The car's ID modifier = 01
 	 * 
 	 * @param make
-	 *            The make of the truck.
+	 *            The make of the car.
 	 * @param model
-	 *            The model of the truck.
+	 *            The model of the car.
 	 * @param year
-	 *            The year of the truck.
+	 *            The year of the car.
 	 * @param color
-	 *            The color of the truck.
+	 *            The color of the car.
 	 * @param numberOfCylinders
-	 *            The number of cylinders in the truck's engine.
+	 *            The number of cylinders in the car's engine.
 	 * @param numberOfDoors
-	 *            The number of doors on the truck.
+	 *            The number of doors on the car.
 	 * @param vinNumber
-	 *            The VIN number of the truck.
+	 *            The VIN number of the car.
 	 * @param licensePlate
-	 *            The license plate number of the truck.
+	 *            The license plate number of the car.
 	 * @param companyID
 	 *            The raw company ID for the vehicle.
 	 * @param dailyRentalPrice

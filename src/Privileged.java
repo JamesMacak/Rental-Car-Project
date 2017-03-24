@@ -1,5 +1,6 @@
 /**
- * This class defines a privileged customer, which receives priority treatment and perks.
+ * This class defines a privileged customer, which receives priority treatment
+ * and perks.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0
@@ -61,6 +62,6 @@ public class Privileged extends Customer {
 	 * @return true or false
 	 */
 	public boolean equals(Customer otherCustomer) {
-		return super.equals(otherCustomer);
+		return this.equals(otherCustomer);
 	}
 }

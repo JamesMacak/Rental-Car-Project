@@ -1,5 +1,0 @@
-honda,oddesy,2006,blue,6,4,1gc1cveg1ff165298,giy 5816,500.4,16
-honda,oddesy,2013,red,6,4,1c3lc56k57n545672,gda 8061,26076.70,16
-toyota,sienna,2013,white,6,4,1hd1jrv19db017380,ffz 7758,27059.56,16
-chrysler,town and country,2010,black,6,4,1fvacwdcx6hw63819,fti 8432,69707.03,16
-nissan,quest,2001,blue,6,4,wvgav75n69w510474,gan 8988,97753.5,16

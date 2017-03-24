@@ -1,15 +1,10 @@
-/**
- * A Van of type Vehicle. Class was created so we have a Van data type. Does not add any new instance variables.
- * 
- * @author Matt Mackenzie & James Macak
- * @version 1.0
- */
+
 public class Van extends Vehicle {
 
 	/**
 	 * Parameterized constructor for a van. Must include the vinNumber,
 	 * licensePlate, raw company ID, and retail price because no setters exist.
-	 * The specific Company ID for the van. The van's ID modifier = 02
+	 * The specific Company ID for the van. The van's ID modifier = 01
 	 * 
 	 * @param make
 	 *            The make of the van.
