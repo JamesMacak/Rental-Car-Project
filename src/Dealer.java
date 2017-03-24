@@ -385,6 +385,15 @@ public class Dealer {
 		v.addMiles(contract.getMilesTraveled());
 		v.setAvailable();
 	}
+	
+	public static Vehicle getVehicle(String companyID) throws Exception {
+		for (Vehicle vehicle : vehicles) {
+			if (companyID.equals(vehicle.getCompanyID())) {
+				return vehicle;
+			}
+		}
+		throw new Exception("No Vehicle Exists.");
+	}
 
 	/**
 	 * Get a generic customer from their ID.
