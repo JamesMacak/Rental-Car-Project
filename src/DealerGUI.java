@@ -35,7 +35,7 @@ public class DealerGUI {
 	private JFrame frame;
 	private JPanel returnPanel, displayScreen, basePanel, newCustomerPanel;
 
-	private List customerList, contractList;
+	private List customerList, contractList, avaliableVehicles;
 	private Choice customerCategorySelector;
 	private JButton btnNewCustomerCreate;
 
@@ -261,6 +261,7 @@ public class DealerGUI {
 		btnCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("CAR");
+				fillAvaliableVehicleList("car");
 			}
 		});
 		btnCar.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -271,6 +272,7 @@ public class DealerGUI {
 		btnVan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("VAN");
+				fillAvaliableVehicleList("van");
 			}
 		});
 		btnVan.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -281,6 +283,7 @@ public class DealerGUI {
 		btnTruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Truck");
+				fillAvaliableVehicleList("truck");
 			}
 		});
 		btnTruck.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -306,7 +309,7 @@ public class DealerGUI {
 		btnNewButton_1.setBounds(155, 148, 117, 38);
 		VehicleMenu.add(btnNewButton_1);
 
-		List avaliableVehicles = new List();
+		avaliableVehicles = new List();
 		avaliableVehicles.setBounds(273, 513, 299, 155);
 		frame.getContentPane().add(avaliableVehicles);
 
@@ -877,5 +880,41 @@ public class DealerGUI {
 
 		lblCustomerAge.setText("");
 		lblNewCustomerID.setText("XXXXXXX");
+	}
+	
+	public void fillAvaliableVehicleList(String choice) {
+		avaliableVehicles.removeAll();
+		switch (choice) {
+		case "car":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '1') {
+					if (vehicle.isAvailable()) {
+						avaliableVehicles.add(vehicle.toString());
+					}
+				}
+			}
+			break;
+		case "van":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '2') {
+					if (vehicle.isAvailable()) {
+						avaliableVehicles.add(vehicle.toString());
+					}
+				}
+			}
+			break;
+		case "truck":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '3') {
+					if (vehicle.isAvailable()) {
+						avaliableVehicles.add(vehicle.toString());
+					}
+				}
+			}
+			break;
+		default:
+			System.out.println("ERROR");
+			break;
+		}
 	}
 }

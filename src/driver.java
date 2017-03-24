@@ -40,13 +40,13 @@ public class driver {
 		//System.out.println(c.getActiveRentalContract());
 		
 		Dealer.getCustomers().sort(null);
-		//DealerGUI GUI = new DealerGUI();
+		DealerGUI GUI = new DealerGUI();
 		
 		Vehicle v = Dealer.getVehicles().get(0);
 		System.out.println(v.isAvailable());
 		//System.out.println(v.getCompanyID().charAt(v.getCompanyID().length() - 1));
 	
-		//GUI.run();
+		GUI.run();
 
 	}
 
