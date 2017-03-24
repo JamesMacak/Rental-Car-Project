@@ -31,15 +31,42 @@ public class driver {
 		System.out.println("\n" + Dealer.getCustomers().get(2).getCustomerID());
 		System.out.println(id);
 		try {
+<<<<<<< HEAD
 			 c = Dealer.getCustomer(id);
 			 System.out.println(c.isPrivileged());
+=======
+			c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
+			Rental r1 = new Rental(car, c, "03/12/2017", Rental.getRentalContractNumber(),
+					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
+			Rental r2 = new Rental(car, c, "03/18/2017", Rental.getRentalContractNumber(),
+					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
+			Dealer.addRentalContracts(r1);
+			c.returnContract(false, 1500, 12);
+			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r1)));
+			
+			Dealer.addRentalContracts(r2);
+			
+>>>>>>> master
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
 		System.out.println(c.isPrivileged());
 		
+<<<<<<< HEAD
 		// Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(c));
+=======
+		//System.out.println(c.getActiveRentalContract());
+		
+		Dealer.getCustomers().sort(null);
+		//DealerGUI GUI = new DealerGUI();
+		
+		Vehicle v = Dealer.getVehicles().get(0);
+		System.out.println(v.isAvailable());
+		//System.out.println(v.getCompanyID().charAt(v.getCompanyID().length() - 1));
+	
+		//GUI.run();
+>>>>>>> master
 
 		key.close();
 	}
