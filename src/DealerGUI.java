@@ -40,8 +40,8 @@ public class DealerGUI {
 
 	private JLabel customerName, customerDateOfBirth, customerSocialSecurityNumber, lblCustomerAge, lblCustomerGender,
 			lblCustomerAddress1, lblCustomerAddress2, lblCustomerAddress3, lblCustomerAttributePrivilege,
-			lblCustomerAttributeWaiting, lblCustomerAttributeBasic, lblActiceContractName, lblRentalVehicle,
-			lblRentalStartDate, lblRentalEndDate, lblRentalPricePerDay, lblRentalSale;
+			lblCustomerAttributeWaiting, lblCustomerAttributeBasic, lblActiceContractName, lblStartDateRentalDetail,
+			lblEndDateRentalDetail, lblPricePerDayRentalDetail, lblVehicleRentalDetail, lblRentalSale;
 
 	private JTextField txtSearch, txtRentalDate, txtRentalAmount, txtGasLevel, txtMiles, txtNewCustomerLastName,
 			txtNewCustomerDOB, txtNewCustomerSSN, txtNewCustomerGender, txtNewCustomerAddress1, txtNewCustomerAddress2,
@@ -115,6 +115,7 @@ public class DealerGUI {
 		lblTotalSales.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		lblTotalSales.setBounds(155, 269, 210, 29);
 		basePanel.add(lblTotalSales);
+		lblTotalSales.setText(Dealer.getSales());
 
 		JLabel lblEclipseVehicleRentals = new JLabel("Eclipse Vehicle Rentals");
 		lblEclipseVehicleRentals.setVerticalAlignment(SwingConstants.TOP);
@@ -143,29 +144,14 @@ public class DealerGUI {
 		frame.getContentPane().add(customerList);
 		customerList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				try {
-					activeCustomer = Dealer.getCustomer(customerList.getSelectedItem().substring(0, 7));
-					if (activeCustomer.isPrivileged()) {
-						activePrivilegedCutomer = Dealer.getPrivilegedCustomer(activeCustomer);
-						activeBasicCustomer = null;
-					} else {
-						activePrivilegedCutomer = null;
-						activeBasicCustomer = Dealer.getBasicCustomer(activeCustomer);
-					}
-					activeContract = activeCustomer.getActiveRentalContract();
+				cutomerListSelect();
+			}
+		});
 
-					fillCustomerData();
-					if (activeContract != null) {
-						lblActiceContractName.setText(activeContract.getContractNumber());
-					} else {
-						lblActiceContractName.setText("NO CONTRACT");
-					}
-				} catch (Exception e1) {
-					System.out.println(e1.getMessage());
-				}
-
-				
-				System.out.println(activeContract);
+		customerList.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				cutomerListSelect();
 			}
 		});
 
@@ -528,25 +514,26 @@ public class DealerGUI {
 		label_2.setBounds(833, 135, 8, 16);
 		frame.getContentPane().add(label_2);
 
-		lblRentalVehicle = new JLabel("NULL");
-		lblRentalVehicle.setBounds(838, 56, 111, 16);
-		frame.getContentPane().add(lblRentalVehicle);
+		lblStartDateRentalDetail = new JLabel("NULL");
+		lblStartDateRentalDetail.setBounds(838, 56, 111, 16);
+		frame.getContentPane().add(lblStartDateRentalDetail);
 
-		lblRentalStartDate = new JLabel("NULL");
-		lblRentalStartDate.setBounds(838, 78, 111, 16);
-		frame.getContentPane().add(lblRentalStartDate);
+		lblEndDateRentalDetail = new JLabel("NULL");
+		lblEndDateRentalDetail.setBounds(838, 78, 111, 16);
+		frame.getContentPane().add(lblEndDateRentalDetail);
 
-		lblRentalEndDate = new JLabel("NULL");
-		lblRentalEndDate.setBounds(848, 106, 104, 16);
-		frame.getContentPane().add(lblRentalEndDate);
+		lblPricePerDayRentalDetail = new JLabel("NULL");
+		lblPricePerDayRentalDetail.setBounds(848, 106, 104, 16);
+		frame.getContentPane().add(lblPricePerDayRentalDetail);
 
-		lblRentalPricePerDay = new JLabel("NULL");
-		lblRentalPricePerDay.setBounds(838, 35, 111, 16);
-		frame.getContentPane().add(lblRentalPricePerDay);
+		lblVehicleRentalDetail = new JLabel("NULL");
+		lblVehicleRentalDetail.setBounds(838, 35, 111, 16);
+		frame.getContentPane().add(lblVehicleRentalDetail);
 
 		lblRentalSale = new JLabel("NULL");
 		lblRentalSale.setBounds(849, 134, 104, 16);
 		frame.getContentPane().add(lblRentalSale);
+
 		newCustomerPanel = new JPanel();
 		newCustomerPanel.setForeground(SystemColor.window);
 		newCustomerPanel.setBackground(SystemColor.window);
@@ -731,16 +718,24 @@ public class DealerGUI {
 	private void fillRentalData() {
 		Rental r = null;
 		for (Rental rental : activeCustomer.getRentalContracts()) {
-			if (contractList.getSelectedItem().equals(rental.toString())) {
+			if (contractList.getSelectedItem().equals(rental.getContractNumber())) {
 				r = rental;
 			}
 		}
-		System.out.println(r);
-//		lblRentalVehicle.setText(r.getVehicle().getCompanyID());
-//		lblRentalStartDate.setText(r.getStartDate());
-//		lblRentalEndDate.setText(r.getEndDate());
-//		lblRentalPricePerDay.setText(Double.toString(r.getDailyPrice()));
-//		lblRentalSale.setText(Dealer.calculateSale(r));
+		// System.out.println(r);
+		if (r != null) {
+			lblVehicleRentalDetail.setText(r.getVehicle().getCompanyID());
+			lblStartDateRentalDetail.setText(r.getStartDate());
+			lblPricePerDayRentalDetail.setText(Double.toString(r.getDailyPrice()));
+
+			if (r.isContractExpired()) {
+				lblEndDateRentalDetail.setText(r.getEndDate());
+				lblRentalSale.setText(Dealer.calculateSale(r));
+			} else {
+				lblEndDateRentalDetail.setText("STILL ACTIVE");
+				lblRentalSale.setText("STILL ACTIVE");
+			}
+		}
 	}
 
 	private void fillCustomerList(String choice) {
@@ -764,5 +759,31 @@ public class DealerGUI {
 			}
 			break;
 		}
+	}
+
+	private void cutomerListSelect() {
+		try {
+			activeCustomer = Dealer.getCustomer(customerList.getSelectedItem().substring(0, 7));
+			if (activeCustomer.isPrivileged()) {
+				activePrivilegedCutomer = Dealer.getPrivilegedCustomer(activeCustomer);
+				activeBasicCustomer = null;
+			} else {
+				activePrivilegedCutomer = null;
+				activeBasicCustomer = Dealer.getBasicCustomer(activeCustomer);
+			}
+			activeContract = activeCustomer.getActiveRentalContract();
+
+			fillCustomerData();
+			if (activeContract != null) {
+				lblActiceContractName.setText(activeContract.getContractNumber());
+			} else {
+				lblActiceContractName.setText("NO CONTRACT");
+			}
+		} catch (Exception e1) {
+			System.out.println(e1.getMessage());
+		}
+
+		// System.out.println(activeContract);
+
 	}
 }

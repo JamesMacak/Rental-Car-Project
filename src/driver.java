@@ -28,6 +28,7 @@ public class driver {
 					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
 			c.addRentalContract(r1);
 			c.returnContract(false, 1500, 12);
+			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r1)));
 			
 			c.addRentalContract(r2);
 			
