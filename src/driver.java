@@ -42,6 +42,8 @@ public class driver {
 		Dealer.getCustomers().sort(null);
 		DealerGUI GUI = new DealerGUI();
 		
+		Vehicle v = Dealer.getVehicles().get(0);
+		//System.out.println(v.getCompanyID().charAt(v.getCompanyID().length() - 1));
 	
 		GUI.run();
 

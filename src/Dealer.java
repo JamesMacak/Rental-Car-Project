@@ -9,8 +9,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A class to use as a static dealer.
- * The dealer can perform operations for Rental, Person, and Vehicle.
+ * A class to use as a static dealer. The dealer can perform operations for
+ * Rental, Person, and Vehicle.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0
@@ -116,8 +116,8 @@ public class Dealer {
 	/**
 	 * Create a new van and add it to the array of vehicles.
 	 * 
-	 * **See car class for parameter descriptions.
-	 * A company ID is generated and given to the van, and the price is given.
+	 * **See car class for parameter descriptions. A company ID is generated and
+	 * given to the van, and the price is given.
 	 * 
 	 * @param make
 	 * @param model
@@ -177,14 +177,17 @@ public class Dealer {
 	 * @param socialSecurityNumber
 	 * @param gender
 	 * @param address
+	 * @return The new cutomer.
 	 */
-	public static void createBasicCustomer(String firstName, String lastName, String dateOfBirth,
+	public static Customer createBasicCustomer(String firstName, String lastName, String dateOfBirth,
 			String socialSecurityNumber, String gender, String address) {
 		Basic customer = new Basic(firstName, lastName, dateOfBirth, socialSecurityNumber, calculateAge(dateOfBirth),
 				gender, address, generateCustomerIDNumber());
 
 		customers.add(customer);
 		basicCustomers.add(customer);
+
+		return customer;
 
 	}
 	/////////////////////////////////////////////
@@ -356,7 +359,7 @@ public class Dealer {
 	 *            Date of birth in "mm/dd/yyyy"
 	 * @return The amount of years from that date to today.
 	 */
-	private static String calculateAge(String dob) {
+	public static String calculateAge(String dob) {
 
 		int year = Integer.parseInt(dob.substring(6));
 		int month = Integer.parseInt(dob.substring(0, 2));

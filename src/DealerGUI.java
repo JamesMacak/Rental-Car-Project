@@ -37,15 +37,19 @@ public class DealerGUI {
 
 	private List customerList, contractList;
 	private Choice customerCategorySelector;
+	private JButton btnNewCustomerCreate;
 
 	private JLabel customerName, customerDateOfBirth, customerSocialSecurityNumber, lblCustomerAge, lblCustomerGender,
 			lblCustomerAddress1, lblCustomerAddress2, lblCustomerAddress3, lblCustomerAttributePrivilege,
 			lblCustomerAttributeWaiting, lblCustomerAttributeBasic, lblActiceContractName, lblStartDateRentalDetail,
-			lblEndDateRentalDetail, lblPricePerDayRentalDetail, lblVehicleRentalDetail, lblRentalSale;
+			lblEndDateRentalDetail, lblPricePerDayRentalDetail, lblVehicleRentalDetail, lblRentalSale, lblNewCustomerID,
+			lblNewCustomerAge;
 
-	private JTextField txtSearch, txtRentalDate, txtRentalAmount, txtGasLevel, txtMiles, txtNewCustomerLastName,
-			txtNewCustomerDOB, txtNewCustomerSSN, txtNewCustomerGender, txtNewCustomerAddress1, txtNewCustomerAddress2,
-			txtNewCustomerAddress3;
+	private JTextField txtSearch, txtRentalDate, txtRentalAmount, txtGasLevel, txtMiles, txtNewCustomerFirstName,
+			txtNewCustomerLastName, txtNewCustomerDOB, txtNewCustomerSSN, txtNewCustomerGender, txtNewCustomerAddress1,
+			txtNewCustomerAddress2, txtNewCustomerAddress3;
+
+	JTextArea noContractToReturn;
 
 	/**
 	 * Launch the application.
@@ -256,6 +260,7 @@ public class DealerGUI {
 		JButton btnCar = new JButton("Car");
 		btnCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("CAR");
 			}
 		});
 		btnCar.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -265,6 +270,7 @@ public class DealerGUI {
 		JButton btnVan = new JButton("Van");
 		btnVan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("VAN");
 			}
 		});
 		btnVan.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -274,6 +280,7 @@ public class DealerGUI {
 		JButton btnTruck = new JButton("Truck");
 		btnTruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Truck");
 			}
 		});
 		btnTruck.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -475,7 +482,7 @@ public class DealerGUI {
 				fillRentalData();
 			}
 		});
-		
+
 		contractList.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -590,7 +597,7 @@ public class DealerGUI {
 		lblAge_1.setBounds(6, 131, 77, 16);
 		newCustomerPanel.add(lblAge_1);
 
-		JTextField txtNewCustomerFirstName = new JTextField();
+		txtNewCustomerFirstName = new JTextField();
 		txtNewCustomerFirstName.setBounds(95, 42, 261, 26);
 		newCustomerPanel.add(txtNewCustomerFirstName);
 		txtNewCustomerFirstName.setColumns(10);
@@ -604,6 +611,16 @@ public class DealerGUI {
 		txtNewCustomerDOB.setColumns(10);
 		txtNewCustomerDOB.setBounds(95, 98, 261, 26);
 		newCustomerPanel.add(txtNewCustomerDOB);
+		txtNewCustomerDOB.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if (txtNewCustomerDOB.getText().length() == 10) {
+					lblNewCustomerAge.setText("");
+					lblNewCustomerAge.setText(Dealer.calculateAge(txtNewCustomerDOB.getText()));
+				} else {
+					lblNewCustomerAge.setText("TYPE DOB : MM/dd/yy");
+				}
+			}
+		});
 
 		txtNewCustomerSSN = new JTextField();
 		txtNewCustomerSSN.setColumns(10);
@@ -630,16 +647,17 @@ public class DealerGUI {
 		txtNewCustomerAddress3.setBounds(95, 266, 261, 26);
 		newCustomerPanel.add(txtNewCustomerAddress3);
 
-		JButton btnNewCustomerCreate = new JButton("Create New Customer");
+		btnNewCustomerCreate = new JButton("Create New Customer");
 		btnNewCustomerCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				createNewCustomer();
+				setNewCustomerFieldsEditable(false);
 			}
 		});
 		btnNewCustomerCreate.setBounds(6, 304, 350, 36);
 		newCustomerPanel.add(btnNewCustomerCreate);
 
-		JLabel lblNewCustomerID = new JLabel("XXXXXXX");
+		lblNewCustomerID = new JLabel("XXXXXXX");
 		lblNewCustomerID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewCustomerID.setBounds(95, 381, 184, 29);
 		newCustomerPanel.add(lblNewCustomerID);
@@ -654,12 +672,14 @@ public class DealerGUI {
 			public void actionPerformed(ActionEvent e) {
 				newCustomerPanel.setVisible(false);
 				basePanel.setVisible(true);
+				setNewCustomerFieldsEditable(true);
+				clearNewCustomerScreen();
 			}
 		});
 		btnNewCustomerClose.setBounds(6, 387, 88, 29);
 		newCustomerPanel.add(btnNewCustomerClose);
 
-		JLabel lblNewCustomerAge = new JLabel("AGE");
+		lblNewCustomerAge = new JLabel("AGE");
 		lblNewCustomerAge.setBounds(99, 131, 251, 16);
 		newCustomerPanel.add(lblNewCustomerAge);
 
@@ -668,12 +688,13 @@ public class DealerGUI {
 			public void actionPerformed(ActionEvent e) {
 				basePanel.setVisible(false);
 				newCustomerPanel.setVisible(true);
+				setNewCustomerFieldsEditable(true);
 			}
 		});
 		btnMainCreateNewCustomer.setBounds(587, 182, 362, 60);
 		frame.getContentPane().add(btnMainCreateNewCustomer);
 
-		JTextArea noContractToReturn = new JTextArea();
+		noContractToReturn = new JTextArea();
 		noContractToReturn.setBackground(SystemColor.window);
 		noContractToReturn.setEditable(false);
 		noContractToReturn.setRows(2);
@@ -714,6 +735,12 @@ public class DealerGUI {
 			lblCustomerAttributeWaiting.setVisible(true);
 		} else {
 			lblCustomerAttributeWaiting.setVisible(false);
+		}
+		
+		if (activeContract != null) {
+			noContractToReturn.setText("\n\n        PRESS RETURN \n          TO RETURN");
+		} else {
+			noContractToReturn.setText("\n\n       NO CONTRACT \n          TO RETURN");
 		}
 
 		contractList.removeAll();
@@ -791,6 +818,53 @@ public class DealerGUI {
 		}
 
 		// System.out.println(activeContract);
+	}
 
+	private void createNewCustomer() {
+		Customer c = Dealer.createBasicCustomer(txtNewCustomerFirstName.getText(), txtNewCustomerLastName.getText(),
+				txtNewCustomerDOB.getText(), txtNewCustomerSSN.getText(), txtNewCustomerGender.getText(),
+				txtNewCustomerAddress1.getText() + ";" + txtNewCustomerAddress2.getText() + ";"
+						+ txtNewCustomerAddress3.getText());
+
+		lblNewCustomerAge.setText(c.getAge());
+		lblNewCustomerID.setText(c.getCustomerID());
+
+		setNewCustomerFieldsEditable(false);
+		sortCustomerLists();
+		fillCustomerList(customerCategorySelector.getSelectedItem());
+	}
+
+	private void sortCustomerLists() {
+		Dealer.getCustomers().sort(null);
+		Dealer.getBasicCustomers().sort(null);
+		Dealer.getPrivilegedCustomers().sort(null);
+	}
+
+	public void setNewCustomerFieldsEditable(boolean b) {
+		txtNewCustomerFirstName.setEditable(b);
+		txtNewCustomerLastName.setEditable(b);
+		txtNewCustomerDOB.setEditable(b);
+		txtNewCustomerSSN.setEditable(b);
+		txtNewCustomerGender.setEditable(b);
+		txtNewCustomerAddress1.setEditable(b);
+		txtNewCustomerAddress2.setEditable(b);
+		txtNewCustomerAddress3.setEditable(b);
+
+		btnNewCustomerCreate.setEnabled(b);
+
+	}
+
+	public void clearNewCustomerScreen() {
+		txtNewCustomerFirstName.setText("");
+		txtNewCustomerLastName.setText("");
+		txtNewCustomerDOB.setText("");
+		txtNewCustomerSSN.setText("");
+		txtNewCustomerGender.setText("");
+		txtNewCustomerAddress1.setText("");
+		txtNewCustomerAddress2.setText("");
+		txtNewCustomerAddress3.setText("");
+
+		lblCustomerAge.setText("");
+		lblNewCustomerID.setText("XXXXXXX");
 	}
 }
