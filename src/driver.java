@@ -17,6 +17,7 @@ public class driver {
 		createSamplePeople();
 		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street;Massapequa Park;NY 11762");
 		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive;Farmingdale;NY 11735");
+		Dealer.createBasicCustomer("James", "Macak", "10/27/1999", "082 12 9229", "MALE", "2685 Patent Line Rd;Franklin;NY 13775");
 
 		Vehicle car = Dealer.getVehicles().get(0);
 	Customer c = null;

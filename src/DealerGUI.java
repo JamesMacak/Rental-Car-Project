@@ -475,6 +475,13 @@ public class DealerGUI {
 				fillRentalData();
 			}
 		});
+		
+		contractList.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				fillRentalData();
+			}
+		});
 
 		JLabel label = new JLabel("Details");
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 16));
