@@ -1,9 +1,4 @@
-/**
- * A truck of type Vehicle. Class was created so we have a truck data type. Does not add any new instance variables.
- * 
- * @author Matt Mackenzie & James Macak
- * @version 1.0
- */
+
 public class Truck extends Vehicle {
 
 	/**

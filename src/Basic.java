@@ -1,5 +1,6 @@
 /**
- * This class defines a basic customer, which receives priority treatment and perks.
+ * This class defines a basic customer, which receives priority treatment and
+ * perks.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0

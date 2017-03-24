@@ -9,8 +9,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A class to use as a static dealer.
- * The dealer can perform operations for Rental, Person, and Vehicle.
+ * A class to use as a static dealer. The dealer can perform operations for
+ * Rental, Person, and Vehicle.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0
@@ -116,8 +116,8 @@ public class Dealer {
 	/**
 	 * Create a new van and add it to the array of vehicles.
 	 * 
-	 * **See car class for parameter descriptions.
-	 * A company ID is generated and given to the van, and the price is given.
+	 * **See car class for parameter descriptions. A company ID is generated and
+	 * given to the van, and the price is given.
 	 * 
 	 * @param make
 	 * @param model
