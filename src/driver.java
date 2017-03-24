@@ -15,18 +15,32 @@ public class driver {
 		// }
 
 		createSamplePeople();
-		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street");
-		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive");
+		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street;Massapequa Park;NY 11762");
+		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive;Farmingdale;NY 11735");
 
-		
+		Vehicle car = Dealer.getVehicles().get(0);
+	Customer c = null;
 		try {
-			Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
+			c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
+			Rental r1 = new Rental(car, c, "03/12/2017", Rental.getRentalContractNumber(),
+					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
+			Rental r2 = new Rental(car, c, "03/18/2017", Rental.getRentalContractNumber(),
+					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
+			c.addRentalContract(r1);
+			c.returnContract(false, 1500, 12);
+			
+			c.addRentalContract(r2);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		//System.out.println(c.getActiveRentalContract());
+		
 		Dealer.getCustomers().sort(null);
 		DealerGUI GUI = new DealerGUI();
+		
+	
 		GUI.run();
 
 	}

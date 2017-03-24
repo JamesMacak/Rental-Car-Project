@@ -9,6 +9,7 @@
 public abstract class Person implements Comparable {
 
 	private String firstName, lastName, dateOfBirth, socialSecurityNumber, age, gender, address;
+	private String addressSub1, addressSub2, addressSub3;
 
 	/**
 	 * Parameterized constructor, requires all aspects of a person.
@@ -37,6 +38,8 @@ public abstract class Person implements Comparable {
 		this.age = age;
 		this.gender = gender;
 		this.address = address;
+		
+		setSubAddress();
 	}
 
 	/**
@@ -155,6 +158,18 @@ public abstract class Person implements Comparable {
 		this.address = address;
 	}
 
+	public String getAddressSub1() {
+		return addressSub1;
+	}
+
+	public String getAddressSub2() {
+		return addressSub2;
+	}
+
+	public String getAddressSub3() {
+		return addressSub3;
+	}
+
 	/**
 	 * Check if two people are equal.
 	 * 
@@ -171,4 +186,12 @@ public abstract class Person implements Comparable {
 	public String toString() {
 		return lastName + ", " + firstName;
 	}
+	
+	private void setSubAddress() {
+		String[] sub = address.split(";");
+		
+		this.addressSub1 = sub[0];
+		this.addressSub2 = sub[1];
+		this.addressSub3 = sub[2];
+	} 
 }
