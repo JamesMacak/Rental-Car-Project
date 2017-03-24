@@ -209,7 +209,7 @@ public class Dealer {
 	 */
 	public static String calculateSale(Rental contract) {
 
-		SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		String inputString1 = contract.getStartDate();
 		String inputString2 = contract.getEndDate();
 
@@ -341,10 +341,10 @@ public class Dealer {
 	/**
 	 * Get today's date
 	 * 
-	 * @return Today's date in "mm/dd/yyyy"
+	 * @return Today's date in "MM/dd/yyyy"
 	 */
 	public static String getDate() {
-		SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		Date date = new Date();
 		return format.format(date);
 	}
