@@ -42,9 +42,14 @@ public class driver {
 		Dealer.getCustomers().sort(null);
 		DealerGUI GUI = new DealerGUI();
 		
+<<<<<<< Updated upstream
 		Vehicle v = Dealer.getVehicles().get(0);
 		//System.out.println(v.getCompanyID().charAt(v.getCompanyID().length() - 1));
 	
+=======
+		//System.out.println(Dealer.getVehicles().get(0).getCompanyID().charAt(Dealer.getVehicles().get(0).getCompanyID().length() - 1));
+		System.out.println("TEST");
+>>>>>>> Stashed changes
 		GUI.run();
 
 	}

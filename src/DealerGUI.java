@@ -34,8 +34,8 @@ public class DealerGUI {
 
 	private JFrame frame;
 	private JPanel returnPanel, displayScreen, basePanel, newCustomerPanel;
-
-	private List customerList, contractList;
+	
+	private List customerList, contractList, avaliableVehicles;
 	private Choice customerCategorySelector;
 	private JButton btnNewCustomerCreate;
 
@@ -128,6 +128,7 @@ public class DealerGUI {
 		lblEclipseVehicleRentals.setBounds(4, 4, 240, 29);
 		frame.getContentPane().add(lblEclipseVehicleRentals);
 
+		/////////////////////////////////////////////////////////////////
 		customerCategorySelector = new Choice();
 		customerCategorySelector.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		customerCategorySelector.setBounds(0, 45, 240, 27);
@@ -141,7 +142,7 @@ public class DealerGUI {
 				fillCustomerList(customerCategorySelector.getSelectedItem());
 			}
 		});
-
+		//////////////////////////////////////////////////////////////////
 		customerList = new List();
 		customerList.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		customerList.setBounds(4, 78, 240, 346);
@@ -257,12 +258,28 @@ public class DealerGUI {
 		lblErrorMessage.setBounds(6, 18, 287, 16);
 		VehicleMenu.add(lblErrorMessage);
 
+		/////////////////////////////////////////////////////////////////////
+		
 		JButton btnCar = new JButton("Car");
 		btnCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< Updated upstream
 				System.out.println("CAR");
+=======
+				System.out.println("BUTTON");
+				fillAvaliableVehicleList("Car");
 			}
 		});
+		
+		avaliableVehicles.setBounds(601, 35, 138, 115);
+		frame.getContentPane().add(avaliableVehicles);
+		avaliableVehicles.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(avaliableVehicles.getSelectedItem());
+>>>>>>> Stashed changes
+			}
+		});
+
 		btnCar.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		btnCar.setBounds(6, 46, 90, 90);
 		VehicleMenu.add(btnCar);
@@ -270,7 +287,11 @@ public class DealerGUI {
 		JButton btnVan = new JButton("Van");
 		btnVan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< Updated upstream
 				System.out.println("VAN");
+=======
+				fillAvaliableVehicleList("Van");
+>>>>>>> Stashed changes
 			}
 		});
 		btnVan.setFont(new Font("Times New Roman", Font.PLAIN, 28));
@@ -280,9 +301,15 @@ public class DealerGUI {
 		JButton btnTruck = new JButton("Truck");
 		btnTruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< Updated upstream
 				System.out.println("Truck");
+=======
+				fillAvaliableVehicleList("Truck");
+>>>>>>> Stashed changes
 			}
 		});
+		
+		////////////////////////////////////////////////////////////////////
 		btnTruck.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		btnTruck.setBounds(203, 46, 90, 90);
 		VehicleMenu.add(btnTruck);
@@ -306,7 +333,6 @@ public class DealerGUI {
 		btnNewButton_1.setBounds(155, 148, 117, 38);
 		VehicleMenu.add(btnNewButton_1);
 
-		List avaliableVehicles = new List();
 		avaliableVehicles.setBounds(273, 513, 299, 155);
 		frame.getContentPane().add(avaliableVehicles);
 
@@ -473,7 +499,8 @@ public class DealerGUI {
 		lblAllContracts.setBounds(601, 13, 100, 16);
 		frame.getContentPane().add(lblAllContracts);
 
-		contractList = new List();
+		////////////////////////////////////////////////////////////////////////////
+		
 		contractList.setBounds(601, 35, 138, 115);
 		frame.getContentPane().add(contractList);
 		contractList.addMouseListener(new MouseAdapter() {
@@ -482,6 +509,10 @@ public class DealerGUI {
 				fillRentalData();
 			}
 		});
+<<<<<<< Updated upstream
+=======
+		////////////////////////////////////////////////////////////////////////////
+>>>>>>> Stashed changes
 
 		contractList.addKeyListener(new KeyAdapter() {
 			@Override
@@ -866,5 +897,36 @@ public class DealerGUI {
 
 		lblCustomerAge.setText("");
 		lblNewCustomerID.setText("XXXXXXX");
+	}
+	
+	public void fillAvaliableVehicleList(String choice) {
+		System.out.println("I GOT TO THE METHOD");
+		switch (choice) {
+		case "Car":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '1') {
+					System.out.println("I GOT THERE");
+					avaliableVehicles.add(vehicle.toString());
+				}
+			}
+			break;
+		case "Van":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '2') {
+					avaliableVehicles.add(vehicle.toString());
+				}
+			}
+			break;
+		case "Truck":
+			for (Vehicle vehicle : Dealer.getVehicles()) {
+				if (vehicle.getCompanyID().charAt(vehicle.getCompanyID().length() - 1) == '3') {
+					avaliableVehicles.add(vehicle.toString());
+				}
+			}
+			break;
+		default:
+			System.out.println("ERROR");
+			break;
+		}
 	}
 }
