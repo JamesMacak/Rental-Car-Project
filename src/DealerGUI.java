@@ -736,7 +736,7 @@ public class DealerGUI {
 		} else {
 			lblCustomerAttributeWaiting.setVisible(false);
 		}
-		
+
 		if (activeContract != null) {
 			noContractToReturn.setText("\n\n        PRESS RETURN \n          TO RETURN");
 		} else {
@@ -745,16 +745,27 @@ public class DealerGUI {
 
 		contractList.removeAll();
 		for (Rental rental : activeCustomer.getRentalContracts()) {
-			contractList.add(rental.getContractNumber());
+			String toList = (rental.isContractExpired()) ? rental.getContractNumber()
+					: "*" + rental.getContractNumber();
+			contractList.add(toList);
 		}
 	}
 
 	private void fillRentalData() {
 		Rental r = null;
-		for (Rental rental : activeCustomer.getRentalContracts()) {
-			if (contractList.getSelectedItem().equals(rental.getContractNumber())) {
-				r = rental;
+		if (contractList.getSelectedItem().charAt(0) != '*') {
+			for (Rental rental : activeCustomer.getRentalContracts()) {
+				if (contractList.getSelectedItem().equals(rental.getContractNumber())) {
+					r = rental;
+				}
 			}
+		} else {
+			for (Rental rental : activeCustomer.getRentalContracts()) {
+				if (contractList.getSelectedItem().substring(1).equals(rental.getContractNumber())) {
+					r = rental;
+				}
+			}
+			
 		}
 		// System.out.println(r);
 		if (r != null) {

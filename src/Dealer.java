@@ -439,4 +439,13 @@ public class Dealer {
 		}
 		throw new Exception("No Customer Exists,");
 	}
+	
+	public static void addRentalContracts (Rental rental) {
+		try {
+			rental.getCustomer().addRentalContract(rental);
+			rental.getVehicle().addRentalContract(rental);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

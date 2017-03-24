@@ -187,13 +187,11 @@ public class Customer extends Person {
 			throw new Exception("Contract Expired.");
 		} else {
 			rentalContracts.add(contract);
-			
 			if (!this.privileged && rentalContracts.size() >= 5) {
 				Customer c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(this));
 				c.setPrivileged(true);
 			}
 		}
-
 	}
 
 	/**
