@@ -1,0 +1,20 @@
+Jerrica,Everitt,03/24/1960,650-24-9052,male,8233 North Thompson Ave.;New Brunswick;NJ 08902
+Jasper,Suther,06/10/1961,482-29-6138,male,63 Vermont Ave.;Flowery Branch;GA 30542
+Winston,Loving,05/27/1963,504-74-0924,female,63 Vermont Ave.;Flowery Branch;GA 30542
+Elwanda,Dangelo,02/08/1963,009-14-0972,male,98 Southampton St.;Hamilton;OH 45011
+Stasia,Cowan,11/02/1965,764-22-7367,female,221B Baker St.;Mechanicsville;VA 23111
+Nova,Hurston,05/25/1965,519-18-8521,female,897 Acacia Court;Riverview;FL 33569
+Neda,Puma,08/26/1977,676-10-9132,female,470 Windsor Rd.;Findlay;OH 45840
+Magdalena,Kieser,03/13/1978,265-24-8486,male,97 10th Lane;Lockport;NY 14094
+Lianne,Darwin,05/25/1978,403-13-0355,female,649 Maple St.;Fairfax;VA 22030
+Dusty,Gratton,05/12/1978,499-76-1425,male,6 Sage Street;Stamford;CT 06902
+Brook,Mendenhall,08/12/1980,003-18-6402,male,97 Water St.;Chapel Hill;NC 27516
+Aracely,Paul,05/27/1982,764-36-5705,female,886 Yukon Court;Loganville;GA 30052
+Cole,Oehler,07/20/1982,311-23-6055,male,54 N. Tanglewood Rd.;Bellmore;NY 11710
+Fae,Ogorman,08/30/1982,382-15-5111,female,79 Sage St.;Solon;OH 44139
+Melia,Coca,05/09/1983,409-52-8825,female,9631 Hanover St.;Hillsboro;OR 97124
+Brandi,Redman,06/02/1984,437-26-4203,female,708 Windsor Ave.;Herndon;VA 20170
+Keitha,Womac,12/23/1985,074-34-0737,male,809 North Rockville Ave.;Roslindale;MA 02131
+Cori,Garber,04/15/1988,661-12-0982,female,55 East Manor Street;Kalispell;MT 59901
+Kirby,Blanc,10/14/1988,496-72-4398,male,9566 High Noon Street;Miami;FL 33125
+Emerald,Kan,08/17/1989,515-11-8944,male,7055 E. Plymouth Circle;Medford;MA 02155

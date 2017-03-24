@@ -177,14 +177,17 @@ public class Dealer {
 	 * @param socialSecurityNumber
 	 * @param gender
 	 * @param address
+	 * @return The new cutomer.
 	 */
-	public static void createBasicCustomer(String firstName, String lastName, String dateOfBirth,
+	public static Customer createBasicCustomer(String firstName, String lastName, String dateOfBirth,
 			String socialSecurityNumber, String gender, String address) {
 		Basic customer = new Basic(firstName, lastName, dateOfBirth, socialSecurityNumber, calculateAge(dateOfBirth),
 				gender, address, generateCustomerIDNumber());
 
 		customers.add(customer);
 		basicCustomers.add(customer);
+
+		return customer;
 
 	}
 	/////////////////////////////////////////////
@@ -356,7 +359,7 @@ public class Dealer {
 	 *            Date of birth in "mm/dd/yyyy"
 	 * @return The amount of years from that date to today.
 	 */
-	private static String calculateAge(String dob) {
+	public static String calculateAge(String dob) {
 
 		int year = Integer.parseInt(dob.substring(6));
 		int month = Integer.parseInt(dob.substring(0, 2));
@@ -435,5 +438,14 @@ public class Dealer {
 			}
 		}
 		throw new Exception("No Customer Exists,");
+	}
+	
+	public static void addRentalContracts (Rental rental) {
+		try {
+			rental.getCustomer().addRentalContract(rental);
+			rental.getVehicle().addRentalContract(rental);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
