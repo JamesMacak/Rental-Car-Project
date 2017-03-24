@@ -1,6 +1,5 @@
 /**
- * This class defines a basic customer, which receives priority treatment and
- * perks.
+ * This class defines a basic customer, which receives priority treatment and perks.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0
@@ -62,6 +61,6 @@ public class Basic extends Customer {
 	 * @return true or false
 	 */
 	public boolean equals(Customer otherCustomer) {
-		return this.equals(otherCustomer);
+		return super.equals(otherCustomer);
 	}
 }

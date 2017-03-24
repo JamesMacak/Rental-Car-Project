@@ -177,14 +177,17 @@ public class Dealer {
 	 * @param socialSecurityNumber
 	 * @param gender
 	 * @param address
+	 * @return The new cutomer.
 	 */
-	public static void createBasicCustomer(String firstName, String lastName, String dateOfBirth,
+	public static Customer createBasicCustomer(String firstName, String lastName, String dateOfBirth,
 			String socialSecurityNumber, String gender, String address) {
 		Basic customer = new Basic(firstName, lastName, dateOfBirth, socialSecurityNumber, calculateAge(dateOfBirth),
 				gender, address, generateCustomerIDNumber());
 
 		customers.add(customer);
 		basicCustomers.add(customer);
+
+		return customer;
 
 	}
 	/////////////////////////////////////////////
@@ -242,7 +245,7 @@ public class Dealer {
 	 * @param customer
 	 *            The basic customer to change.
 	 */
-	public static void changeToPriviledgedCustomer(Basic customer) {
+	public static Privileged changeToPriviledgedCustomer(Basic customer) {
 		String[] data = customer.getData();
 		Privileged newprivileged = new Privileged(data[0], data[1], data[2], data[3], data[4], data[5], data[6],
 				data[7]);
@@ -252,6 +255,10 @@ public class Dealer {
 
 		basicCustomers.remove(customer);
 		privilegedCustomers.add(newprivileged);
+
+		newprivileged.setPrivileged(true);
+
+		return newprivileged;
 	}
 
 	/**
@@ -260,7 +267,7 @@ public class Dealer {
 	 * @param customer
 	 *            The privileged customer to change.
 	 */
-	public static void changeToBasicCustomer(Privileged customer) {
+	public static Basic changeToBasicCustomer(Privileged customer) {
 		String[] data = customer.getData();
 		Basic newBasic = new Basic(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
 
@@ -269,6 +276,11 @@ public class Dealer {
 
 		privilegedCustomers.remove(customer);
 		basicCustomers.add(newBasic);
+
+		newBasic.setPrivileged(false);
+
+		return newBasic;
+
 	}
 
 	/**
@@ -347,7 +359,7 @@ public class Dealer {
 	 *            Date of birth in "mm/dd/yyyy"
 	 * @return The amount of years from that date to today.
 	 */
-	private static String calculateAge(String dob) {
+	public static String calculateAge(String dob) {
 
 		int year = Integer.parseInt(dob.substring(6));
 		int month = Integer.parseInt(dob.substring(0, 2));
@@ -387,11 +399,9 @@ public class Dealer {
 		for (Customer customer : customers) {
 			if (customerID.equals(customer.getCustomerID())) {
 				return customer;
-			} else {
-				throw new Exception("No Customer Exists.");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists.");
 	}
 
 	/**
@@ -407,11 +417,9 @@ public class Dealer {
 		for (Privileged privileged : privilegedCustomers) {
 			if (customer.equals(privileged)) {
 				return privileged;
-			} else {
-				throw new Exception("No Customer Exists.");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists.");
 	}
 
 	/**
@@ -427,10 +435,8 @@ public class Dealer {
 		for (Basic basic : basicCustomers) {
 			if (customer.equals(basic)) {
 				return basic;
-			} else {
-				throw new Exception("No Customer Exists,");
 			}
 		}
-		return null;
+		throw new Exception("No Customer Exists,");
 	}
 }

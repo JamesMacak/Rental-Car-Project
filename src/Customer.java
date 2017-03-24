@@ -29,7 +29,7 @@ public class Customer extends Person {
 	 * @param gender
 	 *            The gender of the person.
 	 * @param address
-	 *            The street adress of the person.
+	 *            The street address of the person.
 	 * @param customerID
 	 *            The customer ID number of the person.
 	 */
@@ -93,20 +93,36 @@ public class Customer extends Person {
 		return rentalContracts;
 	}
 
+	/*
+	 * Check if the customer is privileged.
+	 */
 	public boolean isPrivileged() {
 		return privileged;
 	}
 
+	/**
+	 * Set privileged.
+	 * 
+	 * @param privileged
+	 *            boolean.
+	 */
 	public void setPrivileged(boolean privileged) {
-		if (rentalContracts.size() >= 5) {
-			privileged = true;
-		}
+		this.privileged = privileged;
 	}
 
+	/*
+	 * Check if the customer is waiting.
+	 */
 	public boolean isWaiting() {
 		return waiting;
 	}
 
+	/**
+	 * Set waiting.
+	 * 
+	 * @param waiting
+	 *            boolean.
+	 */
 	public void setWaiting(boolean waiting) {
 		this.waiting = waiting;
 	}
@@ -128,7 +144,7 @@ public class Customer extends Person {
 	/**
 	 * Return the customerID, lastName, firstName as a string
 	 * 
-	 * @return customerID : lastname, firstName
+	 * @return customerID : lastName, firstName
 	 */
 	public String toString() {
 		return this.customerID + " : " + super.toString();
@@ -171,6 +187,11 @@ public class Customer extends Person {
 			throw new Exception("Contract Expired.");
 		} else {
 			rentalContracts.add(contract);
+			
+			if (!this.privileged && rentalContracts.size() >= 5) {
+				Customer c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(this));
+				c.setPrivileged(true);
+			}
 		}
 
 	}
@@ -180,7 +201,7 @@ public class Customer extends Person {
 	 * return the contract that you are turning in.
 	 * 
 	 * @param damaged
-	 *            If the vehicle bacame damaged during use.
+	 *            If the vehicle became damaged during use.
 	 * @param endMiles
 	 *            How many miles are now on the vehicle
 	 * @param endGasLevel
@@ -200,10 +221,8 @@ public class Customer extends Person {
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
 			currentContract.setContractExpired(true);
-
-
+			currentContract.setEndDate(Dealer.getDate());
 			Dealer.returnVehicle(currentContract);
-
 
 			return currentContract;
 		}

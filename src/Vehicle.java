@@ -184,9 +184,9 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 	}
 
 	/**
-	 * Get vehicle's vin number.
+	 * Get vehicle's VIN number.
 	 * 
-	 * @return The vehicle's vin number.
+	 * @return The vehicle's VIN number.
 	 */
 	public String getVinNumber() {
 		return vinNumber;
@@ -330,8 +330,8 @@ public abstract class Vehicle implements Comparable<Vehicle> {
 	}
 
 	/**
-	 * Set the availability of the car. If an active contract exists, then the
-	 * car is not available.
+	 * Set the availability of the car. If an active contract exists,
+	 * then the car is not available.
 	 */
 	public void setAvailable() {
 		if (getActiveRentalContract() != null) {
