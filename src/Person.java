@@ -43,8 +43,8 @@ public abstract class Person implements Comparable {
 	}
 
 	/**
-	 * Default constructor that only requires socialSecurityNumber. Then sets
-	 * all other IVs to null.
+	 * Default constructor that only requires socialSecurityNumber.
+	 * Then sets all other IVs to null.
 	 */
 	public Person(String socialSecurityNumber) {
 		this(null, null, null, socialSecurityNumber, null, null, null);

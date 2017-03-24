@@ -29,7 +29,7 @@ public class Customer extends Person {
 	 * @param gender
 	 *            The gender of the person.
 	 * @param address
-	 *            The street adress of the person.
+	 *            The street address of the person.
 	 * @param customerID
 	 *            The customer ID number of the person.
 	 */
@@ -144,7 +144,7 @@ public class Customer extends Person {
 	/**
 	 * Return the customerID, lastName, firstName as a string
 	 * 
-	 * @return customerID : lastname, firstName
+	 * @return customerID : lastName, firstName
 	 */
 	public String toString() {
 		return this.customerID + " : " + super.toString();
@@ -201,7 +201,7 @@ public class Customer extends Person {
 	 * return the contract that you are turning in.
 	 * 
 	 * @param damaged
-	 *            If the vehicle bacame damaged during use.
+	 *            If the vehicle became damaged during use.
 	 * @param endMiles
 	 *            How many miles are now on the vehicle
 	 * @param endGasLevel
@@ -221,7 +221,7 @@ public class Customer extends Person {
 			currentContract.setEndMiles(endMiles);
 			currentContract.setEndGasLevel(endGasLevel);
 			currentContract.setContractExpired(true);
-
+			currentContract.setEndDate(Dealer.getDate());
 			Dealer.returnVehicle(currentContract);
 
 			return currentContract;

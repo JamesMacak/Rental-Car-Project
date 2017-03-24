@@ -4,7 +4,7 @@ public class Van extends Vehicle {
 	/**
 	 * Parameterized constructor for a van. Must include the vinNumber,
 	 * licensePlate, raw company ID, and retail price because no setters exist.
-	 * The specific Company ID for the van. The van's ID modifier = 01
+	 * The specific Company ID for the van. The van's ID modifier = 02
 	 * 
 	 * @param make
 	 *            The make of the van.
