@@ -10,38 +10,25 @@ public class driver {
 		createCompanyVans();
 		createCompanyTrucks();
 
-		for (int i = 0; i < Dealer.getVehicles().size(); i++) {
-			System.out.println(Dealer.getVehicles().get(i));
-		}
-
-		System.out.println("");
+		// for (int i = 0; i < Dealer.getVehicles().size(); i++) {
+		// System.out.println(Dealer.getVehicles().get(i));
+		// }
 
 		createSamplePeople();
 		Dealer.createBasicCustomer("Matt", "Mackenzie", "01/16/1997", "115 86 1747", "MALE", "275 Violet Street");
 		Dealer.createBasicCustomer("Roger", "Smith", "04/26/1962", "114 76 1448", "MALE", "4 Eve Drive");
 
-		for (int i = 0; i < Dealer.getCustomers().size(); i++) {
-			System.out.println(Dealer.getCustomers().get(i));
-		}
-
-		Scanner key = new Scanner(System.in);
-		String id = key.nextLine();
-		Customer c = null;
-
-		System.out.println("\n" + Dealer.getCustomers().get(2).getCustomerID());
-		System.out.println(id);
-		try {
-			 c = Dealer.getCustomer(id);
-			 System.out.println(c.isPrivileged());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-		System.out.println(c.isPrivileged());
 		
-		// Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(c));
+		try {
+			Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Dealer.getCustomers().sort(null);
+		DealerGUI GUI = new DealerGUI();
+		GUI.run();
 
-		key.close();
 	}
 
 	/////////////////////////////////////////////////////////

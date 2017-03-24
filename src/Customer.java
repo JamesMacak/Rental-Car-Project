@@ -93,20 +93,36 @@ public class Customer extends Person {
 		return rentalContracts;
 	}
 
+	/*
+	 * Check if the customer is privileged.
+	 */
 	public boolean isPrivileged() {
 		return privileged;
 	}
 
+	/**
+	 * Set privileged.
+	 * 
+	 * @param privileged
+	 *            boolean.
+	 */
 	public void setPrivileged(boolean privileged) {
-		if (rentalContracts.size() >= 5) {
-			privileged = true;
-		}
+		this.privileged = privileged;
 	}
 
+	/*
+	 * Check if the customer is waiting.
+	 */
 	public boolean isWaiting() {
 		return waiting;
 	}
 
+	/**
+	 * Set waiting.
+	 * 
+	 * @param waiting
+	 *            boolean.
+	 */
 	public void setWaiting(boolean waiting) {
 		this.waiting = waiting;
 	}
@@ -171,6 +187,11 @@ public class Customer extends Person {
 			throw new Exception("Contract Expired.");
 		} else {
 			rentalContracts.add(contract);
+			
+			if (!this.privileged && rentalContracts.size() >= 5) {
+				Customer c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(this));
+				c.setPrivileged(true);
+			}
 		}
 
 	}
@@ -201,9 +222,7 @@ public class Customer extends Person {
 			currentContract.setEndGasLevel(endGasLevel);
 			currentContract.setContractExpired(true);
 
-
 			Dealer.returnVehicle(currentContract);
-
 
 			return currentContract;
 		}
