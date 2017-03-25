@@ -211,9 +211,9 @@ public class Dealer {
 	 * @return A string of the price formated "%.2f"
 	 */
 	public static String[] calculateSale(Rental contract) {
-		
+
 		String[] data = new String[6];
-		
+
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		String inputString1 = contract.getStartDate();
 		String inputString2 = contract.getEndDate();
@@ -227,7 +227,7 @@ public class Dealer {
 		} catch (ParseException e) {
 			e.getMessage();
 		}
-		
+
 		double cost = days * contract.getDailyPrice();
 
 		data[1] = String.format("%.2f", cost);
@@ -235,7 +235,7 @@ public class Dealer {
 		data[3] = "0";
 		data[4] = "0";
 		data[5] = "0";
-		
+
 		if (contract.isDamageDone()) {
 			cost += 200.00;
 			data[3] = "200";
@@ -244,13 +244,13 @@ public class Dealer {
 			cost += 50.00;
 			data[4] = "50";
 		}
-		if (contract.isGasUpCharge()){
+		if (contract.isGasUpCharge()) {
 			cost += 20.00;
 			data[5] = "20";
 		}
-			
+
 		data[0] = String.format("%.2f", cost);
-		
+
 		return data;
 
 	}
@@ -401,7 +401,7 @@ public class Dealer {
 		v.addMiles(contract.getMilesTraveled());
 		v.setAvailable();
 	}
-	
+
 	public static Vehicle getVehicle(String companyID) throws Exception {
 		for (Vehicle vehicle : vehicles) {
 			if (companyID.equals(vehicle.getCompanyID())) {
@@ -464,8 +464,13 @@ public class Dealer {
 		}
 		throw new Exception("No Customer Exists,");
 	}
-	
-	public static void addRentalContracts (Rental rental) {
+
+	/**
+	 * add a rental contract to both vehicle and customer.
+	 * 
+	 * @param rental
+	 */
+	public static void addRentalContracts(Rental rental) {
 		try {
 			rental.getCustomer().addRentalContract(rental);
 			rental.getVehicle().addRentalContract(rental);
