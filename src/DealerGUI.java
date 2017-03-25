@@ -27,6 +27,10 @@ import javax.swing.border.TitledBorder;
 
 public class DealerGUI {
 
+	
+	// Its working 
+	
+	
 	private Customer activeCustomer;
 	private Rental activeContract;
 	private Vehicle activeVehicle;
