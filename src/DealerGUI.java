@@ -27,7 +27,7 @@ import javax.swing.border.TitledBorder;
 
 public class DealerGUI {
 
-	
+	// The following is the most important comment. Do not delete!
 	// Its working 
 	
 	
@@ -102,11 +102,17 @@ public class DealerGUI {
 			}
 		});
 
+		/**
+		 * Display the "Wait List" label.
+		 */
 		JLabel lblWaitList = new JLabel("Wait List");
 		lblWaitList.setBounds(6, 6, 105, 33);
 		basePanel.add(lblWaitList);
 		lblWaitList.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 
+		/**
+		 * Display the "Sales" label followed by the amount.
+		 */
 		JLabel lblSales = new JLabel("Sales           $");
 		lblSales.setBounds(6, 269, 137, 29);
 		basePanel.add(lblSales);
@@ -116,6 +122,9 @@ public class DealerGUI {
 		salesList.setBounds(6, 304, 359, 102);
 		basePanel.add(salesList);
 
+		/**
+		 * Wait list for basic customers.
+		 */
 		basicWaitList = new List();
 		basicWaitList.setBounds(191, 68, 174, 195);
 		basePanel.add(basicWaitList);
@@ -128,20 +137,32 @@ public class DealerGUI {
 			}
 		});
 
+		/**
+		 * Privileged wait list title.
+		 */
 		Label label_8 = new Label("Privileged");
 		label_8.setBounds(6, 46, 105, 16);
 		basePanel.add(label_8);
 
+		/**
+		 * Basic wait list title.
+		 */
 		Label label_9 = new Label("Basic");
 		label_9.setBounds(191, 46, 105, 16);
 		basePanel.add(label_9);
 
+		/**
+		 * Total of all sales by the dealer.
+		 */
 		lblTotalSales = new JLabel("0000.00");
 		lblTotalSales.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		lblTotalSales.setBounds(155, 269, 210, 29);
 		basePanel.add(lblTotalSales);
 		lblTotalSales.setText(Dealer.getSales());
 
+		/**
+		 * Displays "Eclipse Vehicle Rentals" at the top left of the window.
+		 */
 		JLabel lblEclipseVehicleRentals = new JLabel("Eclipse Vehicle Rentals");
 		lblEclipseVehicleRentals.setVerticalAlignment(SwingConstants.TOP);
 		lblEclipseVehicleRentals.setHorizontalAlignment(SwingConstants.LEFT);
@@ -149,6 +170,10 @@ public class DealerGUI {
 		lblEclipseVehicleRentals.setBounds(4, 4, 240, 29);
 		frame.getContentPane().add(lblEclipseVehicleRentals);
 
+		/**
+		 * Selector to specify which type of customers are listed.
+		 * Either "All Customers" or "Privileged Customers" or "Basic Customers"
+		 */
 		customerCategorySelector = new Choice();
 		customerCategorySelector.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		customerCategorySelector.setBounds(0, 45, 240, 27);
@@ -163,12 +188,14 @@ public class DealerGUI {
 			}
 		});
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+		/**
+		 * Displays the list of customers that is selected.
+		 */
 		customerList = new List();
 		customerList.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		customerList.setBounds(4, 78, 240, 346);
 		frame.getContentPane().add(customerList);
+		//Mouse Listener is added to determine which customer is selected
 		customerList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
@@ -176,7 +203,7 @@ public class DealerGUI {
 				cutomerListSelect();
 			}
 		});
-
+		//Arrow-key Listener is added to determine which customer is selected
 		customerList.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -184,17 +211,24 @@ public class DealerGUI {
 			}
 		});
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+		/**
+		 * Displays all customers.
+		 */
 		for (Customer customer : Dealer.getCustomers()) {
 			customerList.add(customer.toString());
 		}
 
+		/**
+		 * Selected customer details heading.
+		 */
 		JLabel lblDetails = new JLabel("Details");
 		lblDetails.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		lblDetails.setBounds(273, 13, 61, 16);
 		frame.getContentPane().add(lblDetails);
 
+		/**
+		 * Selected customer name, first and last.
+		 */
 		JLabel lblName = new JLabel("Name:");
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -206,6 +240,9 @@ public class DealerGUI {
 		customerName.setBounds(319, 41, 95, 16);
 		frame.getContentPane().add(customerName);
 
+		/**
+		 * Selected customer Date of Birth.
+		 */
 		JLabel lblDateOfBirth = new JLabel("DOB:");
 		lblDateOfBirth.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDateOfBirth.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -217,6 +254,9 @@ public class DealerGUI {
 		customerDateOfBirth.setBounds(319, 69, 95, 16);
 		frame.getContentPane().add(customerDateOfBirth);
 
+		/**
+		 * Selected customer Social Security Number
+		 */
 		JLabel lblSocialSecurityNumber = new JLabel("SSN:");
 		lblSocialSecurityNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSocialSecurityNumber.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -228,6 +268,9 @@ public class DealerGUI {
 		customerSocialSecurityNumber.setBounds(319, 97, 95, 16);
 		frame.getContentPane().add(customerSocialSecurityNumber);
 
+		/**
+		 * Selected customer Age
+		 */
 		JLabel lblAge = new JLabel("Age:");
 		lblAge.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAge.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -239,6 +282,9 @@ public class DealerGUI {
 		lblCustomerAge.setBounds(319, 125, 95, 16);
 		frame.getContentPane().add(lblCustomerAge);
 
+		/**
+		 * Selected customer Gender
+		 */
 		JLabel lblGender = new JLabel("Gender:");
 		lblGender.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGender.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -250,27 +296,42 @@ public class DealerGUI {
 		lblCustomerGender.setBounds(319, 154, 95, 16);
 		frame.getContentPane().add(lblCustomerGender);
 
+		/**
+		 * Customer address heading
+		 */
 		JLabel lblAddress = new JLabel("Address:");
 		lblAddress.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAddress.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblAddress.setBounds(246, 182, 61, 16);
 		frame.getContentPane().add(lblAddress);
 
+		/**
+		 * Selected customer Address Line 1
+		 */
 		lblCustomerAddress1 = new JLabel("NULL");
 		lblCustomerAddress1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblCustomerAddress1.setBounds(319, 182, 121, 17);
 		frame.getContentPane().add(lblCustomerAddress1);
 
+		/**
+		 * Selected customer Address Line 2
+		 */
 		lblCustomerAddress2 = new JLabel("NULL");
 		lblCustomerAddress2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblCustomerAddress2.setBounds(319, 200, 95, 16);
 		frame.getContentPane().add(lblCustomerAddress2);
 
+		/**
+		 * Selected customer Address Line 3
+		 */
 		lblCustomerAddress3 = new JLabel("NULL");
 		lblCustomerAddress3.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblCustomerAddress3.setBounds(319, 219, 95, 16);
 		frame.getContentPane().add(lblCustomerAddress3);
 
+		/**
+		 * JPanel that contains the select a vehicle options.
+		 */
 		JPanel VehicleMenu = new JPanel();
 		VehicleMenu.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Rent A Vehicle",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -278,13 +339,18 @@ public class DealerGUI {
 		frame.getContentPane().add(VehicleMenu);
 		VehicleMenu.setLayout(null);
 
+		/**
+		 * Various error messages will appear here.
+		 */
 		lblErrorMessage = new JLabel("");
 		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMessage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblErrorMessage.setBounds(6, 18, 287, 16);
 		VehicleMenu.add(lblErrorMessage);
 
-		//////////////////////////////////////////////////////////
+		/**
+		 * Button to list all available cars.
+		 */
 		JButton btnCar = new JButton("Car");
 		btnCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -297,7 +363,10 @@ public class DealerGUI {
 		btnCar.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		btnCar.setBounds(6, 46, 90, 90);
 		VehicleMenu.add(btnCar);
-
+		
+		/**
+		 * Button to list all available vans.
+		 */
 		JButton btnVan = new JButton("Van");
 		btnVan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -311,6 +380,9 @@ public class DealerGUI {
 		btnVan.setBounds(104, 46, 90, 90);
 		VehicleMenu.add(btnVan);
 
+		/**
+		 * Button to list all available trucks.
+		 */
 		JButton btnTruck = new JButton("Truck");
 		btnTruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -320,7 +392,6 @@ public class DealerGUI {
 				fillAvaliableVehicleList("truck");
 			}
 		});
-		////////////////////////////////////////////////////////
 
 		btnTruck.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		btnTruck.setBounds(203, 46, 90, 90);
@@ -353,8 +424,6 @@ public class DealerGUI {
 		VehicleMenu.add(btnWait);
 		fillWaitLists();
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		avaliableVehicles = new List();
 		avaliableVehicles.setBounds(273, 513, 299, 155);
 		frame.getContentPane().add(avaliableVehicles);
@@ -371,8 +440,6 @@ public class DealerGUI {
 				vehicleListSelect();
 			}
 		});
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblAvailableVehicles = new JLabel("Available Vehicles");
 		lblAvailableVehicles.setHorizontalAlignment(SwingConstants.CENTER);
@@ -434,27 +501,26 @@ public class DealerGUI {
 		lblCustomAmount.setBounds(111, 622, 66, 16);
 		frame.getContentPane().add(lblCustomAmount);
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		btnCreateNewContract = new JButton("Create Contract");
 		btnCreateNewContract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double rentalPrice = 0.00;
 				if (checkboxDefualtPrice.isSelected()) {
-					if (activeVehicle.getCompanyID().charAt(6) == '1') {
+					if (activeVehicle.getCompanyID().charAt(6) == '1') {	//Chose a Car --> Default Car price
 						rentalPrice = Dealer.CAR_DAILY_RENTAL_PRICE;
 						System.out.println(rentalPrice);
 					}
-					if (activeVehicle.getCompanyID().charAt(6) == '2') {
+					if (activeVehicle.getCompanyID().charAt(6) == '2') {	//Chose a Van --> Default Van price
 						rentalPrice = Dealer.VAN_DAILY_RENTAL_PRICE;
 						System.out.println(rentalPrice);
 					}
-					if (activeVehicle.getCompanyID().charAt(6) == '3') {
+					if (activeVehicle.getCompanyID().charAt(6) == '3') {	//Chose a Truck --> Default Truck price
 						rentalPrice = Dealer.TRUCK_DAILY_RENTAL_PRICE;
 						System.out.println(rentalPrice);
 					}
 					setNewRentalContractFieldsEditable(false);
-				} else if (!checkboxDefualtPrice.isSelected()) {
+					
+				} else if (!checkboxDefualtPrice.isSelected()) {	// Custom price was entered
 					rentalPrice = Double.parseDouble(txtRentalAmount.getText());
 					setNewRentalContractFieldsEditable(false);
 				}
@@ -470,15 +536,11 @@ public class DealerGUI {
 		btnCreateNewContract.setBounds(0, 643, 244, 29);
 		frame.getContentPane().add(btnCreateNewContract);
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		txtRentalDate = new JTextField();
 		txtRentalDate.setText("DATE");
 		txtRentalDate.setBounds(78, 562, 130, 26);
 		frame.getContentPane().add(txtRentalDate);
 		txtRentalDate.setColumns(10);
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblPricePerDay = new JLabel("Price/Day");
 		lblPricePerDay.setBounds(4, 595, 61, 16);
@@ -488,8 +550,6 @@ public class DealerGUI {
 		txtRentalAmount.setBounds(175, 617, 55, 26);
 		frame.getContentPane().add(txtRentalAmount);
 		txtRentalAmount.setColumns(10);
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JLabel lblActiveContract = new JLabel("Active Contract");
 		lblActiveContract.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -712,7 +772,7 @@ public class DealerGUI {
 		newCustomerPanel.add(txtNewCustomerDOB);
 		txtNewCustomerDOB.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				if (txtNewCustomerDOB.getText().length() == 10) {
+				if (txtNewCustomerDOB.getText().length() == 10) {	// Once the users enters their full DOB it will calculate and display the age
 					lblNewCustomerAge.setText("");
 					lblNewCustomerAge.setText(Dealer.calculateAge(txtNewCustomerDOB.getText()));
 				} else {
@@ -802,15 +862,19 @@ public class DealerGUI {
 		frame.getContentPane().add(noContractToReturn);
 		noContractToReturn.setLineWrap(true);
 
-		// txtRentalAmount = new JTextField();
-		// txtRentalAmount.setBounds(181, 618, 51, 26);
-		// frame.getContentPane().add(txtRentalAmount);
-		// txtRentalAmount.setColumns(10);
-
 		returnPanel.setVisible(false);
 
 	}
 
+	/**
+	 * Fills out the customer data for the selected customer.
+	 * 		First Name & Last Name
+	 * 		Date of Birth
+	 * 		Social Security Number
+	 * 		Age
+	 * 		Gender
+	 * 		Address
+	 */
 	private void fillCustomerData() {
 
 		customerName.setText(activeCustomer.getFirstName() + " " + activeCustomer.getLastName());
@@ -822,60 +886,56 @@ public class DealerGUI {
 		lblCustomerAddress2.setText(activeCustomer.getAddressSub2());
 		lblCustomerAddress3.setText(activeCustomer.getAddressSub3());
 
-		if (activeContract != null) {
+		if (activeContract != null) {	// Contract exists
 			lblActiceContractName.setText(activeContract.getContractNumber());
 			btnReturn.setEnabled(true);
-		} else {
+		} else {						// Contract does not exist
 			lblActiceContractName.setText("NO CONTRACT");
 			btnReturn.setEnabled(false);
 		}
 
-		if (activeCustomer.isPrivileged()) {
+		if (activeCustomer.isPrivileged()) {	// If customer is Privileged
 			lblCustomerAttributePrivilege.setVisible(true);
 			lblCustomerAttributeBasic.setVisible(false);
-		} else {
+		} else {								// Customer is Basic
 			lblCustomerAttributePrivilege.setVisible(false);
 			lblCustomerAttributeBasic.setVisible(true);
 		}
 
-		if (activeCustomer.isWaiting()) {
+		if (activeCustomer.isWaiting()) {	// Customer is on a waiting list
 			lblCustomerAttributeWaiting.setVisible(true);
-		} else {
+		} else {							// Customer is not on a waiting list
 			lblCustomerAttributeWaiting.setVisible(false);
 		}
 
-		if (activeContract != null) {
+		if (activeContract != null) {		// Contract exists
 			noContractToReturn.setText("\n\n        PRESS RETURN \n          TO RETURN");
-		} else {
+		} else {							// Contract does not exist
 			noContractToReturn.setText("\n\n       NO CONTRACT \n          TO RETURN");
 		}
 
 		contractList.removeAll();
-		for (Rental rental : activeCustomer.getRentalContracts()) {
+		for (Rental rental : activeCustomer.getRentalContracts()) {		// All contracts under the selected customer
 			String toList = (rental.isContractExpired()) ? rental.getContractNumber()
 					: "*" + rental.getContractNumber();
 			contractList.add(toList);
 		}
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	private void fillRentalContractData() {
 		lblCustomerRental.setText(activeCustomer.getFirstName() + " " + activeCustomer.getLastName());
 		lblVehicleRental.setText(activeVehicle.getCompanyID());
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	private void fillRentalData() {
 		Rental r = null;
-		if (contractList.getSelectedItem().charAt(0) != '*') {
+		if (contractList.getSelectedItem().charAt(0) != '*') {	// If contract is still active
 			for (Rental rental : activeCustomer.getRentalContracts()) {
 				if (contractList.getSelectedItem().equals(rental.getContractNumber())) {
 					r = rental;
 				}
 			}
-		} else {
+		} else {												// Contract has expired
 			for (Rental rental : activeCustomer.getRentalContracts()) {
 				if (contractList.getSelectedItem().substring(1).equals(rental.getContractNumber())) {
 					r = rental;
@@ -883,8 +943,8 @@ public class DealerGUI {
 			}
 
 		}
-		// System.out.println(r);
-		if (r != null) {
+		
+		if (r != null) {	// Rental exists
 			lblVehicleRentalDetail.setText(r.getVehicle().getCompanyID());
 			lblStartDateRentalDetail.setText(r.getStartDate());
 			lblPricePerDayRentalDetail.setText(Double.toString(r.getDailyPrice()));
@@ -899,6 +959,10 @@ public class DealerGUI {
 		}
 	}
 
+	/**
+	 * Fills the list of specified customers.
+	 * @param choice
+	 */
 	private void fillCustomerList(String choice) {
 
 		switch (choice) {
@@ -922,8 +986,9 @@ public class DealerGUI {
 		}
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Current selected customer.
+	 */
 	private void cutomerListSelect() {
 		try {
 			setNewRentalContractFieldsEditable(true);
@@ -942,12 +1007,11 @@ public class DealerGUI {
 		} catch (Exception e1) {
 			System.out.println(e1.getMessage());
 		}
-
-		// System.out.println(activeContract);
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Create a new customer with the fields entered.
+	 */
 	private void createNewCustomer() {
 		Customer c = Dealer.createBasicCustomer(txtNewCustomerFirstName.getText(), txtNewCustomerLastName.getText(),
 				txtNewCustomerDOB.getText(), txtNewCustomerSSN.getText(), txtNewCustomerGender.getText(),
@@ -968,6 +1032,10 @@ public class DealerGUI {
 		Dealer.getPrivilegedCustomers().sort(null);
 	}
 
+	/**
+	 * Disallows editing or allows editing of the New Customer fields
+	 * @param b
+	 */
 	public void setNewCustomerFieldsEditable(boolean b) {
 		txtNewCustomerFirstName.setEditable(b);
 		txtNewCustomerLastName.setEditable(b);
@@ -982,6 +1050,9 @@ public class DealerGUI {
 
 	}
 
+	/**
+	 * Clears the all of the New Customer fields
+	 */
 	public void clearNewCustomerScreen() {
 		txtNewCustomerFirstName.setText("");
 		txtNewCustomerLastName.setText("");
@@ -996,6 +1067,10 @@ public class DealerGUI {
 		lblNewCustomerID.setText("XXXXXXX");
 	}
 
+	/**
+	 * Disallows editing or allows editing of the New Contract fields
+	 * @param b
+	 */
 	public void setNewRentalContractFieldsEditable(boolean b) {
 		txtRentalDate.setEditable(b);
 		txtRentalAmount.setEditable(b);
@@ -1003,6 +1078,10 @@ public class DealerGUI {
 		btnCreateNewContract.setEnabled(b);
 	}
 
+	/**
+	 * Lists all available vehicles under a specified category
+	 * @param choice
+	 */
 	public void fillAvaliableVehicleList(String choice) {
 		avaliableVehicles.removeAll();
 		switch (choice) {
@@ -1047,6 +1126,9 @@ public class DealerGUI {
 		}
 	}
 
+	/**
+	 * Return a vehicle, therefore ending a contract.
+	 */
 	private void returnVehicle() {
 		String[] sale = null;
 		Rental c = null;
@@ -1074,6 +1156,9 @@ public class DealerGUI {
 
 	}
 
+	/**
+	 * Fills the wait lists, both Privileged and Basic
+	 */
 	private void fillWaitLists() {
 		for (Privileged c : Dealer.getPrivilegedCustomers()) {
 			if (c.isWaiting()) {
@@ -1088,8 +1173,9 @@ public class DealerGUI {
 		}
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * The current selected vehicle
+	 */
 	private void vehicleListSelect() {
 		try {
 			activeVehicle = Dealer.getVehicle(avaliableVehicles.getSelectedItem().substring(0, 7));
