@@ -27,8 +27,6 @@ import javax.swing.border.TitledBorder;
 
 public class DealerGUI {
 
-	// Its working
-
 	private Customer activeCustomer;
 	private Rental activeContract;
 	private Vehicle activeVehicle;
@@ -572,6 +570,8 @@ public class DealerGUI {
 				returnPanel.setVisible(false);
 				returnVehicle();
 				fillSalesList();
+				
+				
 			}
 		});
 		btnConfirmRetrun.setBounds(16, 71, 117, 29);

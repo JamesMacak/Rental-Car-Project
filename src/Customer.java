@@ -93,6 +93,16 @@ public class Customer extends Person {
 		return rentalContracts;
 	}
 
+	/**
+	 * Set the rental contracts list.
+	 * 
+	 * @param rentals
+	 *            the list of contracts.
+	 */
+	public void setRentalContracts(ArrayList<Rental> rentals) {
+		this.rentalContracts = rentals;
+	}
+
 	/*
 	 * Check if the customer is privileged.
 	 */
@@ -225,7 +235,7 @@ public class Customer extends Person {
 			Dealer.returnVehicle(currentContract);
 
 			Dealer.addASale(currentContract);
-			
+
 			return currentContract;
 		}
 	}

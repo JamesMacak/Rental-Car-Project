@@ -294,7 +294,7 @@ public class Dealer {
 		privilegedCustomers.add(newprivileged);
 
 		newprivileged.setPrivileged(true);
-
+		newprivileged.setRentalContracts(customer.getRentalContracts());
 		return newprivileged;
 	}
 
