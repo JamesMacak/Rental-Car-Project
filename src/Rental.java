@@ -1,6 +1,6 @@
 /**
- * A class to create objects of type Rental.
- * These objects are contracts that unite a vehicle and a customer.
+ * A class to create objects of type Rental. These objects are contracts that
+ * unite a vehicle and a customer.
  * 
  * @author Matt Mackenzie & James Macak
  * @version 1.0
@@ -172,7 +172,8 @@ public class Rental {
 	}
 
 	/**
-	 * Get the start gas level of the vehicle. Should be the vehicles max gas capacity.
+	 * Get the start gas level of the vehicle. Should be the vehicles max gas
+	 * capacity.
 	 * 
 	 * @return The start date.
 	 */
@@ -256,11 +257,11 @@ public class Rental {
 	//////////////////////////////////////////////////////
 
 	/**
-	 * Check if the miles traveled in the current rental was more than 100.
-	 * If yes, milesUpCharge = true.
+	 * Check if the miles traveled in the current rental was more than 100. If
+	 * yes, milesUpCharge = true.
 	 */
 	public void checkMiles() {
-		if (endMiles - startMiles > 100) {
+		if (getMilesTraveled() > 100) {
 			milesUpCharge = true;
 		}
 	}
@@ -273,8 +274,12 @@ public class Rental {
 			gasUpCharge = true;
 		}
 	}
-	
+
 	public double getMilesTraveled() {
-		return endMiles - startMiles;
+		if (endMiles - startMiles > 0) {
+			return endMiles - startMiles;
+		} else {
+			return endMiles;
+		}
 	}
 }

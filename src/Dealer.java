@@ -210,8 +210,10 @@ public class Dealer {
 	 *            The finished contract to calculate the days since rented.
 	 * @return A string of the price formated "%.2f"
 	 */
-	public static String calculateSale(Rental contract) {
-
+	public static String[] calculateSale(Rental contract) {
+		
+		String[] data = new String[6];
+		
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 		String inputString1 = contract.getStartDate();
 		String inputString2 = contract.getEndDate();
@@ -225,17 +227,31 @@ public class Dealer {
 		} catch (ParseException e) {
 			e.getMessage();
 		}
-
+		
 		double cost = days * contract.getDailyPrice();
 
-		if (contract.isDamageDone())
+		data[1] = String.format("%.2f", cost);
+		data[2] = Integer.toString(days);
+		data[3] = "0";
+		data[4] = "0";
+		data[5] = "0";
+		
+		if (contract.isDamageDone()) {
 			cost += 200.00;
-		if (contract.isMilesUpCharge())
+			data[3] = "200";
+		}
+		if (contract.isMilesUpCharge()) {
 			cost += 50.00;
-		if (contract.isGasUpCharge())
+			data[4] = "50";
+		}
+		if (contract.isGasUpCharge()){
 			cost += 20.00;
-
-		return String.format("%.2f", cost);
+			data[5] = "20";
+		}
+			
+		data[0] = String.format("%.2f", cost);
+		
+		return data;
 
 	}
 
