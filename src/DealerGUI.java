@@ -28,8 +28,6 @@ import javax.swing.border.TitledBorder;
 public class DealerGUI {
 
 	private Customer activeCustomer;
-	private Privileged activePrivilegedCutomer;
-	private Basic activeBasicCustomer;
 	private Rental activeContract;
 	private Vehicle activeVehicle;
 
@@ -427,7 +425,7 @@ public class DealerGUI {
 		checkboxDefualtPrice.setFont(new Font("Dialog", Font.PLAIN, 10));
 		checkboxDefualtPrice.setBounds(14, 618, 95, 23);
 		frame.getContentPane().add(checkboxDefualtPrice);
-		
+
 		JLabel lblCustomAmount = new JLabel("Custom: $");
 		lblCustomAmount.setBounds(111, 622, 66, 16);
 		frame.getContentPane().add(lblCustomAmount);
@@ -461,7 +459,7 @@ public class DealerGUI {
 						activeVehicle.getGasCapacity());
 				Dealer.addRentalContracts(r);
 				System.out.println(r.toString());
-				
+
 				cutomerListSelect();
 			}
 		});
@@ -926,13 +924,6 @@ public class DealerGUI {
 		try {
 			setNewRentalContractFieldsEditable(true);
 			activeCustomer = Dealer.getCustomer(customerList.getSelectedItem().substring(0, 7));
-			if (activeCustomer.isPrivileged()) {
-				activePrivilegedCutomer = Dealer.getPrivilegedCustomer(activeCustomer);
-				activeBasicCustomer = null;
-			} else {
-				activePrivilegedCutomer = null;
-				activeBasicCustomer = Dealer.getBasicCustomer(activeCustomer);
-			}
 			activeContract = activeCustomer.getActiveRentalContract();
 
 			fillCustomerData();
