@@ -22,9 +22,19 @@ public class driver {
 		Vehicle car = Dealer.getVehicles().get(0);
 		Vehicle truck = Dealer.getVehicles().get(Dealer.getVehicles().size() - 1);
 		
+		
+		Dealer.getBasicCustomers().get(3).setWaiting(true);
+		Dealer.getBasicCustomers().get(5).setWaiting(true);
+		Dealer.getBasicCustomers().get(8).setWaiting(true);
+		Dealer.getBasicCustomers().get(13).setWaiting(true);
+		
+		Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomers().get(2)).setWaiting(true);;
+		Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomers().get(7));
+		Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomers().get(20));
+		
 	Customer c = null;
 		try {
-			c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
+			c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(18)));
 			Rental r1 = new Rental(car, c, "03/12/2017", Rental.getRentalContractNumber(),
 					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
 			Rental r2 = new Rental(truck, c, "03/18/2017", Rental.getRentalContractNumber(),

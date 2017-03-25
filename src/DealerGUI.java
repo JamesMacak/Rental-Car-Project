@@ -87,11 +87,18 @@ public class DealerGUI {
 		frame.getContentPane().add(basePanel);
 		basePanel.setLayout(null);
 
-		 privilegeWaitList = new List();
+		privilegeWaitList = new List();
 		privilegeWaitList.setBounds(6, 68, 174, 195);
 		basePanel.add(privilegeWaitList);
+		privilegeWaitList.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				basicWaitList.deselect(basicWaitList.getSelectedIndex());
+				customerCategorySelector.select("Privileged Customers");
+				customerList.removeAll();
+				fillCustomerList(customerCategorySelector.getSelectedItem());
+			}
+		});
 
-		
 		JLabel lblWaitList = new JLabel("Wait List");
 		lblWaitList.setBounds(6, 6, 105, 33);
 		basePanel.add(lblWaitList);
@@ -102,13 +109,21 @@ public class DealerGUI {
 		basePanel.add(lblSales);
 		lblSales.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 
-		 salesList = new List();
+		salesList = new List();
 		salesList.setBounds(6, 304, 359, 102);
 		basePanel.add(salesList);
 
-		 basicWaitList = new List();
+		basicWaitList = new List();
 		basicWaitList.setBounds(191, 68, 174, 195);
 		basePanel.add(basicWaitList);
+		basicWaitList.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
+				customerCategorySelector.select("Basic Customers");
+				customerList.removeAll();
+				fillCustomerList(customerCategorySelector.getSelectedItem());
+			}
+		});
 
 		Label label_8 = new Label("Privileged");
 		label_8.setBounds(6, 46, 105, 16);
@@ -151,6 +166,8 @@ public class DealerGUI {
 		frame.getContentPane().add(customerList);
 		customerList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
+				basicWaitList.deselect(basicWaitList.getSelectedIndex());
 				cutomerListSelect();
 			}
 		});
@@ -254,7 +271,7 @@ public class DealerGUI {
 		frame.getContentPane().add(VehicleMenu);
 		VehicleMenu.setLayout(null);
 
-		 lblErrorMessage = new JLabel("");
+		lblErrorMessage = new JLabel("");
 		lblErrorMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMessage.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblErrorMessage.setBounds(6, 18, 287, 16);
@@ -263,7 +280,7 @@ public class DealerGUI {
 		JButton btnCar = new JButton("Car");
 		btnCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("CAR");
+				// System.out.println("CAR");
 				avaliableVehicles.setEnabled(true);
 				lblErrorMessage.setText("");
 				fillAvaliableVehicleList("car");
@@ -276,7 +293,7 @@ public class DealerGUI {
 		JButton btnVan = new JButton("Van");
 		btnVan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("VAN");
+				// System.out.println("VAN");
 				avaliableVehicles.setEnabled(true);
 				lblErrorMessage.setText("");
 				fillAvaliableVehicleList("van");
@@ -289,7 +306,7 @@ public class DealerGUI {
 		JButton btnTruck = new JButton("Truck");
 		btnTruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("Truck");
+				// System.out.println("Truck");
 				avaliableVehicles.setEnabled(true);
 				lblErrorMessage.setText("");
 				fillAvaliableVehicleList("truck");
@@ -308,16 +325,24 @@ public class DealerGUI {
 		btnNewButton.setBounds(26, 148, 117, 38);
 		VehicleMenu.add(btnNewButton);
 
-		 btnWait = new JButton("Wait");
+		btnWait = new JButton("Wait");
 		btnWait.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		btnWait.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				if (activeContract == null && !activeCustomer.isWaiting()) {
+					activeCustomer.setWaiting(true);
+				}
+				privilegeWaitList.removeAll();
+				basicWaitList.removeAll();
+				fillWaitLists();
 			}
 		});
 		btnWait.setBounds(155, 148, 117, 38);
 		VehicleMenu.add(btnWait);
-
+		fillWaitLists();
+		
+		
 		avaliableVehicles = new List();
 		avaliableVehicles.setBounds(273, 513, 299, 155);
 		frame.getContentPane().add(avaliableVehicles);
@@ -924,17 +949,17 @@ public class DealerGUI {
 					}
 				}
 			}
-			
+
 			break;
 		default:
 			System.out.println("ERROR");
 			break;
 		}
-		
-		if (avaliableVehicles.getItemCount() == 0) { 
+
+		if (avaliableVehicles.getItemCount() == 0) {
 			avaliableVehicles.add("NO VEHICLES AVAILABLE");
 			lblErrorMessage.setText("NO VEHICLES AVAILABLE");
-			
+
 			avaliableVehicles.setEnabled(false);
 		}
 	}
@@ -965,6 +990,19 @@ public class DealerGUI {
 		JOptionPane.showConfirmDialog(frame, prompt, "TOTAL SALE: $ " + sale[0], JOptionPane.NO_OPTION);
 
 	}
-	
-	
+
+	private void fillWaitLists() {
+		for (Privileged c : Dealer.getPrivilegedCustomers()) {
+			if (c.isWaiting()) {
+				privilegeWaitList.add(c.getLastName() + ", " + c.getFirstName());
+			}
+		}
+
+		for (Basic c : Dealer.getBasicCustomers()) {
+			if (c.isWaiting()) {
+				basicWaitList.add(c.getLastName() + ", " + c.getFirstName());
+			}
+		}
+	}
+
 }
