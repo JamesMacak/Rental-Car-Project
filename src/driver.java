@@ -20,19 +20,22 @@ public class driver {
 		Dealer.createBasicCustomer("James", "Macak", "10/27/1999", "082 12 9229", "MALE", "2685 Patent Line Rd;Franklin;NY 13775");
 
 		Vehicle car = Dealer.getVehicles().get(0);
+		Vehicle truck = Dealer.getVehicles().get(Dealer.getVehicles().size() - 1);
+		
 	Customer c = null;
 		try {
 			c = Dealer.changeToPriviledgedCustomer(Dealer.getBasicCustomer(Dealer.getCustomers().get(20)));
 			Rental r1 = new Rental(car, c, "03/12/2017", Rental.getRentalContractNumber(),
 					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
-			Rental r2 = new Rental(car, c, "03/18/2017", Rental.getRentalContractNumber(),
+			Rental r2 = new Rental(truck, c, "03/18/2017", Rental.getRentalContractNumber(),
 					Dealer.CAR_DAILY_RENTAL_PRICE, car.getCurrentMiles(), car.getGasCapacity());
 			Dealer.addRentalContracts(r1);
-			c.returnContract(false, 1500, 12);
-			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r1)));
+			c.returnContract(false, 101, 11);
+			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r1)[0]));
 			
 			Dealer.addRentalContracts(r2);
-			
+			System.out.println(r1.isGasUpCharge());
+			System.out.println(r1.isMilesUpCharge());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +46,7 @@ public class driver {
 		DealerGUI GUI = new DealerGUI();
 		
 		Vehicle v = Dealer.getVehicles().get(0);
-		System.out.println(v.isAvailable());
+		//System.out.println(v.isAvailable());
 		//System.out.println(v.getCompanyID().charAt(v.getCompanyID().length() - 1));
 	
 		GUI.run();
