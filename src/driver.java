@@ -68,13 +68,10 @@ public class driver {
 			Dealer.addRentalContracts(r5);
 			Dealer.addRentalContracts(r6);
 			Dealer.addRentalContracts(r7);
-			
 
 			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r1)[0]));
 			Dealer.addSale(Double.parseDouble(Dealer.calculateSale(r4)[0]));
 
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
