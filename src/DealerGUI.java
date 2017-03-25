@@ -27,10 +27,8 @@ import javax.swing.border.TitledBorder;
 
 public class DealerGUI {
 
-	
-	// Its working 
-	
-	
+	// Its working
+
 	private Customer activeCustomer;
 	private Rental activeContract;
 	private Vehicle activeVehicle;
@@ -96,9 +94,12 @@ public class DealerGUI {
 		privilegeWaitList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				basicWaitList.deselect(basicWaitList.getSelectedIndex());
+				salesList.deselect(salesList.getSelectedIndex());
 				customerCategorySelector.select("Privileged Customers");
 				customerList.removeAll();
 				fillCustomerList(customerCategorySelector.getSelectedItem());
+
+				getSelectedFromList(privilegeWaitList.getSelectedItem());
 			}
 		});
 
@@ -115,6 +116,17 @@ public class DealerGUI {
 		salesList = new List();
 		salesList.setBounds(6, 304, 359, 102);
 		basePanel.add(salesList);
+		salesList.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
+				basicWaitList.deselect(basicWaitList.getSelectedIndex());
+				customerCategorySelector.select("All Customers");
+				customerList.removeAll();
+				fillCustomerList(customerCategorySelector.getSelectedItem());
+
+				getSelectedFromList(salesList.getSelectedItem());
+			}
+		});
 
 		basicWaitList = new List();
 		basicWaitList.setBounds(191, 68, 174, 195);
@@ -122,9 +134,12 @@ public class DealerGUI {
 		basicWaitList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
+				salesList.deselect(salesList.getSelectedIndex());
 				customerCategorySelector.select("Basic Customers");
 				customerList.removeAll();
 				fillCustomerList(customerCategorySelector.getSelectedItem());
+
+				getSelectedFromList(basicWaitList.getSelectedItem());
 			}
 		});
 
@@ -156,6 +171,7 @@ public class DealerGUI {
 		customerCategorySelector.add("All Customers");
 		customerCategorySelector.add("Privileged Customers");
 		customerCategorySelector.add("Basic Customers");
+		customerCategorySelector.add("Active Customers");
 		customerCategorySelector.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				customerList.removeAll();
@@ -173,6 +189,7 @@ public class DealerGUI {
 			public void mouseClicked(MouseEvent e) {
 				privilegeWaitList.deselect(privilegeWaitList.getSelectedIndex());
 				basicWaitList.deselect(basicWaitList.getSelectedIndex());
+				salesList.deselect(salesList.getSelectedIndex());
 				cutomerListSelect();
 			}
 		});
@@ -329,6 +346,7 @@ public class DealerGUI {
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("This button has no use as of yet.");
 			}
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -342,10 +360,16 @@ public class DealerGUI {
 
 				if (activeContract == null && !activeCustomer.isWaiting()) {
 					activeCustomer.setWaiting(true);
+				} else if (activeContract != null) {
+					lblErrorMessage.setText("ALREADY RENTING A VEHICLE");
+				} else if (activeCustomer.isWaiting()) {
+					lblErrorMessage.setText("ALREADY ON WAITING LIST");
 				}
 				privilegeWaitList.removeAll();
 				basicWaitList.removeAll();
 				fillWaitLists();
+
+				cutomerListSelect();
 			}
 		});
 
@@ -547,10 +571,12 @@ public class DealerGUI {
 			public void actionPerformed(ActionEvent e) {
 				returnPanel.setVisible(false);
 				returnVehicle();
+				fillSalesList();
 			}
 		});
 		btnConfirmRetrun.setBounds(16, 71, 117, 29);
 		returnPanel.add(btnConfirmRetrun);
+		fillSalesList();
 
 		lblCustomerAttributePrivilege = new JLabel("Priviliged");
 		lblCustomerAttributePrivilege.setHorizontalAlignment(SwingConstants.CENTER);
@@ -802,13 +828,7 @@ public class DealerGUI {
 		frame.getContentPane().add(noContractToReturn);
 		noContractToReturn.setLineWrap(true);
 
-		// txtRentalAmount = new JTextField();
-		// txtRentalAmount.setBounds(181, 618, 51, 26);
-		// frame.getContentPane().add(txtRentalAmount);
-		// txtRentalAmount.setColumns(10);
-
 		returnPanel.setVisible(false);
-
 	}
 
 	private void fillCustomerData() {
@@ -919,12 +939,20 @@ public class DealerGUI {
 				customerList.add(customer.toString());
 			}
 			break;
+		case "Active Customers":
+			for (Customer customer : Dealer.getCustomers()) {
+				if (customer.getActiveRentalContract() != null) {
+					customerList.add(customer.toString());
+				}
+			}
+			break;
 		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private void cutomerListSelect() {
+		lblErrorMessage.setText("");
 		try {
 			setNewRentalContractFieldsEditable(true);
 			activeCustomer = Dealer.getCustomer(customerList.getSelectedItem().substring(0, 7));
@@ -979,7 +1007,6 @@ public class DealerGUI {
 		txtNewCustomerAddress3.setEditable(b);
 
 		btnNewCustomerCreate.setEnabled(b);
-
 	}
 
 	public void clearNewCustomerScreen() {
@@ -1077,13 +1104,15 @@ public class DealerGUI {
 	private void fillWaitLists() {
 		for (Privileged c : Dealer.getPrivilegedCustomers()) {
 			if (c.isWaiting()) {
-				privilegeWaitList.add(c.getLastName() + ", " + c.getFirstName());
+				privilegeWaitList
+						.add(c.getCustomerID() + " : " + c.getLastName() + ", " + c.getFirstName().charAt(0) + ".");
 			}
 		}
 
 		for (Basic c : Dealer.getBasicCustomers()) {
 			if (c.isWaiting()) {
-				basicWaitList.add(c.getLastName() + ", " + c.getFirstName());
+				basicWaitList
+						.add(c.getCustomerID() + " : " + c.getLastName() + ", " + c.getFirstName().charAt(0) + ".");
 			}
 		}
 	}
@@ -1097,5 +1126,24 @@ public class DealerGUI {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	private void fillSalesList() {
+		salesList.removeAll();
+		for (Rental rental : Dealer.getAllSales()) {
+			salesList.add(rental.getCustomer().toString() + " : $ " + Dealer.calculateSale(rental)[0]);
+		}
+	}
+
+	public void getSelectedFromList(String info) {
+		String c = info.substring(0, 6);
+
+		for (int i = 0; i < customerList.getItemCount(); i++) {
+			if (c.equals(customerList.getItem(i).substring(0, 6))) {
+				customerList.select(i);
+			}
+		}
+
+		cutomerListSelect();
 	}
 }

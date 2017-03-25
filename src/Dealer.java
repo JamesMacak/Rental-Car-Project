@@ -30,6 +30,8 @@ public class Dealer {
 	private static ArrayList<String> allCompanyIDNumbers = new ArrayList<String>();
 	private static ArrayList<String> allCustomerIDNumbers = new ArrayList<String>();
 
+	private static ArrayList<Rental> allSales = new ArrayList<Rental>();
+
 	private static double sales = 0.00;
 
 	/**
@@ -75,6 +77,25 @@ public class Dealer {
 	 */
 	public static ArrayList<Basic> getBasicCustomers() {
 		return basicCustomers;
+	}
+
+	/**
+	 * Get all The Sales.
+	 * 
+	 * @return The basic customer list.
+	 */
+	public static ArrayList<Rental> getAllSales() {
+		return allSales;
+	}
+
+	/**
+	 * Add a sale to the list of sales.
+	 * 
+	 * @param rental
+	 *            The rental to add.
+	 */
+	public static void addASale(Rental rental) {
+		allSales.add(rental);
 	}
 
 	/**

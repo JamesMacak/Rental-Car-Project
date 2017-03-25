@@ -224,6 +224,8 @@ public class Customer extends Person {
 			currentContract.checkGas();
 			Dealer.returnVehicle(currentContract);
 
+			Dealer.addASale(currentContract);
+			
 			return currentContract;
 		}
 	}
